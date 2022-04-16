@@ -3,6 +3,8 @@
   "projects": {
     "api": "apps/api",
     "mobile": "apps/mobile",
-    "mobile-e2e": "apps/mobile-e2e"
+    "mobile-e2e": "apps/mobile-e2e",
+    "ui": "libs/ui",
+    "ui-e2e": "apps/ui-e2e"
   }
 }
