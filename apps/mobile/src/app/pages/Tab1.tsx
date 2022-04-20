@@ -8,6 +8,7 @@ import {
 } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
+import { LectureCard } from '@univ-project/ui';
 
 const Tab1: React.FC = () => {
   return (
@@ -24,6 +25,7 @@ const Tab1: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Tab 1 page" />
+        <LectureCard></LectureCard>
       </IonContent>
     </IonPage>
   );
