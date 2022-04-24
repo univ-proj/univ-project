@@ -1,43 +1,74 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import MUICard from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
+import SmartDisplayOutlinedIcon from '@mui/icons-material/SmartDisplayOutlined';
+import Avatar from '@mui/material/Avatar';
+import { CardHeader } from '@mui/material';
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-    •
-  </Box>
-);
+export interface ILectureCardProps {
+  name: string;
+  topic: string;
+  files_count: number;
+  videos_count: number;
+  lecturer: {
+    title: string;
+    full_name: string;
+    avatar: string;
+  };
+}
 
-export const LectureCard = () => {
+export const LectureCard = (props: ILectureCardProps) => {
   return (
     <MUICard sx={{ minWidth: 275 }}>
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="primary" gutterBottom>
-          Word of the Day
+        <Box
+          component="div"
+          sx={{
+            maxWidth: 'fit-content',
+            padding: '2px 8px',
+            height: 20,
+            backgroundColor: 'secondary.main',
+            borderRadius: 1,
+          }}
+        >
+          <Typography color="text.primary" fontWeight={700}>
+            New
+          </Typography>
+        </Box>
+        <Typography variant="h6" gutterBottom>
+          {props.name}
         </Typography>
-        <Typography variant="h5" component="div">
-          be{bull}nev{bull}o{bull}lent
+        <Typography variant="subtitle1" color="text.secondary">
+          {props.topic}
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="secondary">
-          adjective
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
+
+        <Typography variant="subtitle1" color="text.secondary" gutterBottom>
+          <InsertDriveFileOutlinedIcon /> {props.files_count} Files
           <br />
-          {'"a benevolent smile"'}
+          <SmartDisplayOutlinedIcon /> {props.videos_count} Videos
+        </Typography>
+
+        <Typography variant="subtitle2" color="text.secondary">
+          Uploaded by
+          <br />
+          <CardHeader
+            avatar={
+              <Avatar
+                alt={props.lecturer.full_name}
+                src={props.lecturer.avatar}
+              />
+            }
+            title={`${props.lecturer.title.toUpperCase()}/ ${
+              props.lecturer.full_name
+            }`}
+          />
+          {/* <Avatar alt={props.lecturer.full_name} src={props.lecturer.avatar} />
+          {props.lecturer.title.toUpperCase()}/ {props.lecturer.full_name} */}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-      <Button size="large">Hi</Button>
     </MUICard>
   );
 };
