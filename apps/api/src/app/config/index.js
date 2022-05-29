@@ -7,6 +7,7 @@ import * as dotenv from 'dotenv';
  * @property {string} host Network interface to listen on
  * @property {number} port The port the project runs on locally
  * @property {string} service The service running
+ * @property {string} log_level The log level
  */
 
 dotenv.config();
