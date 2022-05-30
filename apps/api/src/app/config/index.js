@@ -4,10 +4,12 @@ import * as dotenv from 'dotenv';
  *
  * Configuration object
  * @typedef {Object} IConfig
+ * @property {string} protocol connection protocol
  * @property {string} host Network interface to listen on
  * @property {number} port The port the project runs on locally
  * @property {string} service The service running
  * @property {string} log_level The log level
+ * @property {string} api_version The API version
  */
 
 dotenv.config();
