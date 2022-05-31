@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 import Icon from '@mui/material/Icon';
+import { IconType } from '../icon-dto';
 
 /* eslint-disable-next-line */
 export interface BasicIconProps {
@@ -24,7 +25,7 @@ export interface BasicIconProps {
     | 'schedule';
   label?: string;
   /** Initially as filled */
-  type?: 'outlined' | 'filled';
+  type?: IconType;
 }
 
 export function BasicIcon({ name, label, type = 'filled' }: BasicIconProps) {
