@@ -40,6 +40,7 @@
     "@capacitor/ios": "^3.2.5",
     "@nrwl/cli": "13.9.5",
     "@nrwl/cypress": "13.9.5",
+    "@nrwl/devkit": "13.9.5",
     "@nrwl/eslint-plugin-nx": "13.9.5",
     "@nrwl/express": "^13.9.5",
     "@nrwl/jest": "13.9.5",
