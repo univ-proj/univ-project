@@ -10,6 +10,10 @@ import * as dotenv from 'dotenv';
  * @property {string} service The service running
  * @property {string} log_level The log level
  * @property {string} api_version The API version
+ * @property {string} database The specified database
+ * @property {string} mongodb_debug Is debug mode enabled
+ * @property {string} mongo_uri database uri
+
  */
 
 dotenv.config();
