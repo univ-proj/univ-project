@@ -35,6 +35,9 @@ theme.components = {
       root: {
         height: '40px',
         borderRadius: '4px',
+        '& .MuiButton-startIcon': {
+          'margin-bottom': '-3px',
+        },
       },
       sizeLarge: {
         width: '382px',
