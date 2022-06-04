@@ -13,6 +13,8 @@ import * as dotenv from 'dotenv';
  * @property {string} database The specified database
  * @property {string} mongodb_debug Is debug mode enabled
  * @property {string} mongo_uri database uri
+ * @property {string} expands_options_default_limit Expands options default limit
+ * @property {"asc"|"desc"} expands_options_default_sort_type Expands options default sort type
 
  */
 

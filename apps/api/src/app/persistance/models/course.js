@@ -1,6 +1,6 @@
 /**
- * @typedef Student
- * @property {string} first_name
+ * @typedef Course
+ * @property {string} student
  *
  */
 
@@ -10,18 +10,14 @@
  */
 const student = {
   config: {
-    timestamps: true,
+    // timestamps: true,
   },
   fields: {
-    first_name: {
+    name: {
       type: 'string',
     },
   },
-  relations: {
-    courses: {
-      type: 'object:course',
-    },
-  },
+  relations: {},
   sortable_fields: [],
   search: {
     filters: [],
