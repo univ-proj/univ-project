@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react';
 
-import { LectureCard } from './lectureCard';
+import LectureCard from './lecture-card';
 
-describe('Card', () => {
+describe('LectureCard', () => {
   it('should render successfully', () => {
     const { baseElement } = render(<LectureCard />);
     expect(baseElement).toBeTruthy();

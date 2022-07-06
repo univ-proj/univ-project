@@ -1,0 +1,69 @@
+/*
+ * Replace this with your own classes
+ *
+ * e.g.
+ * .container {
+ * }
+*/
+
+.lecture_card {
+  width: 187px;
+  height: 220px;
+  padding: 16px;
+  border-radius: 4px;
+  background-color: #ece6f7;
+}
+
+.update_box {
+  width: 43px;
+  height: 20px;
+  background-color: #eac504;
+  border-radius: 4px;
+  position: relative;
+}
+.box_text {
+  font-size: 12px;
+  font-weight: 600;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.prof_info_container {
+  margin-top: 43px;
+  display: inline-flex;
+  gap: 8px;
+}
+
+.prof_name {
+  margin-top: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.information_container {
+  margin-top: 26px;
+}
+
+.container {
+  display: inline-flex;
+  gap: 10.67px;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.text_bold {
+  color: #6247aa;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.6rem;
+}
+
+.text {
+  color: #6247aa;
+  font-size: 12px;
+  line-height: 1.2rem;
+}
