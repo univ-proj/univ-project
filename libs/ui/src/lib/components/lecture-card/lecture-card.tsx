@@ -1,4 +1,9 @@
-import { PdfIcon, SubjectsIcon, VideoIcon } from '@univ-project/ui';
+import {
+  PdfIcon,
+  SubjectsIcon,
+  VideoIcon,
+  AssignmentsIcon,
+} from '@univ-project/ui';
 import Avatar from '@mui/material/Avatar';
 import styles from './lecture-card.module.css';
 import logo from '../../../../../../apps/mobile/src/assets/icon/files.svg';
@@ -29,7 +34,8 @@ export function LectureCard(props: LectureCardProps) {
         <div className={styles['text']}>Topic of the lecture</div>
         <div className={styles['content-container']}>
           <div className={styles['container']} style={{ marginTop: '9px' }}>
-            <img alt="fff" src={logo} />
+            {/* <img alt="fff" src={logo} /> */}
+            <AssignmentsIcon type="outlined" />
             <div className={styles['text']}>{props.files_num} Files</div>
           </div>
           <div className={styles['container']}>
