@@ -67,3 +67,8 @@
   font-size: 12px;
   line-height: 1.2rem;
 }
+
+.icon_container {
+  width: 16px;
+  height: 16px;
+}
