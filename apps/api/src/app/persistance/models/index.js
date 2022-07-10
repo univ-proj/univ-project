@@ -1,4 +1,14 @@
-// import student from './student';
-
+export { default as answer } from './answer';
+export { default as class } from './class';
+export { default as file } from './file';
+export { default as level } from './level';
+export { default as quiz } from './quiz';
 export { default as student } from './student';
+export { default as assignment } from './assignment';
+export { default as code_description } from './code_description';
+export { default as group } from './group';
+export { default as section } from './section';
+export { default as attendance } from './attendance';
 export { default as course } from './course';
+export { default as program } from './program';
+export { default as staff } from './staff';

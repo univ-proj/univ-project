@@ -1,8 +1,8 @@
 /**
  *
- * @type {import('./model').IModel<import('libs/typedefs/src').Course>}
+ * @type {import('./model').IModel<import('libs/typedefs/src').Section>}
  */
-const course = {
+const section = {
   config: {
     timestamps: true,
   },
@@ -10,16 +10,19 @@ const course = {
     name: {
       type: 'string',
     },
-    optional: {
-      type: 'boolean',
+    course: {
+      type: 'object:course',
     },
-    program: {
-      type: 'object:program',
+    group: {
+      type: 'object:group',
     },
   },
   relations: {
     classes: {
       type: 'object:class',
+    },
+    students: {
+      type: 'object:student',
     },
   },
   sortable_fields: [],
@@ -28,4 +31,4 @@ const course = {
   },
 };
 
-export default course;
+export default section;

@@ -1,8 +1,8 @@
 /**
  *
- * @type {import('./model').IModel<import('libs/typedefs/src').Student>}
+ * @type {import('./model').IModel<import('libs/typedefs/src').Staff>}
  */
-const student = {
+const staff = {
   config: {
     timestamps: true,
   },
@@ -29,23 +29,8 @@ const student = {
     password: {
       type: 'string',
     },
-    level: {
-      type: 'object:level',
-    },
-    program: {
-      type: 'object:program',
-    },
-    group: {
-      type: 'object:group',
-    },
-    section: {
-      type: 'object:section',
-    },
   },
   relations: {
-    attendance: {
-      type: 'object:attendance',
-    },
     courses: {
       type: 'object:course',
     },
@@ -56,4 +41,4 @@ const student = {
   },
 };
 
-export default student;
+export default staff;
