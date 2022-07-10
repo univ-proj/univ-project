@@ -13,7 +13,7 @@ module.exports = {
   addons: [
     ...rootMain.addons,
     '@nrwl/react/plugins/storybook',
-    'storybook-addon-material-ui',
+    // 'storybook-addon-material-ui',
   ],
   features: {
     emotionAlias: false,

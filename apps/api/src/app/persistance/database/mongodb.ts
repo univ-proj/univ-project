@@ -96,6 +96,7 @@ export default function create_client(
       const Model = get_modal_by_modal_name(model_name);
       const created_object = await Model.create(rename_id(body, 'id', '_id'));
 
+      // @ts-ignore
       return rename_id(created_object._doc);
     },
 

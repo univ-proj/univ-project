@@ -16,8 +16,11 @@ export * from './lib/icons/scan-icon/scan-icon';
 export * from './lib/icons/subjects-icon/subjects-icon';
 export * from './lib/icons/home-icon/home-icon';
 export * from './lib/icons/basic-icon/basic-icon';
-export * from './lib/components/lectureCard/lectureCard';
+export * from './lib/components/lecture-card/lecture-card';
+export * from './lib/components/buttons/button/button';
 export * from './lib/ui';
 export * from './lib/theme';
+export * from './lib/components/subject-card/subject-card'
+export * from './lib/components/schedule-card/schedule-card';
 // example
 // example 2

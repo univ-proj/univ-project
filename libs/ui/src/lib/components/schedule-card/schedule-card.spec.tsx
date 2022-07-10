@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import { LectureCard } from './lectureCard';
+import ScheduleCard from './schedule-card';
 
-describe('Card', () => {
+describe('ScheduleCard', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<LectureCard />);
+    const { baseElement } = render(<ScheduleCard />);
     expect(baseElement).toBeTruthy();
   });
 });
