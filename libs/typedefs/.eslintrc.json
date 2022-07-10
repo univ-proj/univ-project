@@ -12,15 +12,7 @@
     },
     {
       "files": ["*.js", "*.jsx"],
-      "rules": {
-        "no-console": "warn",
-        "no-unused-vars": ["error", { "ignoreRestSiblings": true }],
-        "consistent-return": "warn"
-      }
-    },
-    {
-      "files": "*.spec.js",
-      "plugins": ["jest"]
+      "rules": {}
     }
   ]
 }
