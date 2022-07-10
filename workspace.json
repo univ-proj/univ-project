@@ -4,6 +4,7 @@
     "api": "apps/api",
     "mobile": "apps/mobile",
     "mobile-e2e": "apps/mobile-e2e",
+    "typedefs": "libs/typedefs",
     "ui": "libs/ui",
     "ui-e2e": "apps/ui-e2e"
   }

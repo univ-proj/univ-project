@@ -1,0 +1,32 @@
+{
+  "root": "libs/typedefs",
+  "sourceRoot": "libs/typedefs/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/typedefs",
+        "main": "libs/typedefs/src/index.ts",
+        "tsConfig": "libs/typedefs/tsconfig.lib.json",
+        "assets": ["libs/typedefs/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/typedefs/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/typedefs"],
+      "options": {
+        "jestConfig": "libs/typedefs/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
