@@ -7,6 +7,10 @@ const answer = {
     timestamps: true,
   },
   fields: {
+    type: {
+      type: 'string',
+      enum: ['file', 'code'],
+    },
     file: {
       type: 'object:file',
     },

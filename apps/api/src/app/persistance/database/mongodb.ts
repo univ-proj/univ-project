@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import mongoose from 'mongoose';
+import * as _ from 'lodash';
 
 import logger from '@/logger';
 import errors from '@/errors';
 import { IConfig } from '@/config';
 import { IModel } from '@/persistance/models/model';
-import { Student } from '@/persistance/models/student';
+
 import {
   parse_modal_config_relations,
   parse_models,
@@ -13,7 +15,7 @@ import {
 export type IModelsKeys = keyof typeof import('@/persistance/models');
 
 export type IModelMap = {
-  [x in IModelsKeys]: IModel<Student>;
+  [x in IModelsKeys]: IModel<any>;
 };
 
 export interface IRelation {
@@ -22,6 +24,8 @@ export interface IRelation {
   src_id: string;
   dst_id: string;
 }
+
+export type IDatabase = ReturnType<typeof create_client>;
 
 export default function create_client(
   config: IConfig,
@@ -53,10 +57,14 @@ export default function create_client(
     return Model;
   }
 
+  function rename_id(object, old_key = '_id', new_key = 'id') {
+    return _(object).omit(old_key).set(new_key, object[old_key]).value();
+  }
+
   const parsed_models_config = parse_modal_config_relations(models_config);
   const models = parse_models(parsed_models_config);
 
-  return {
+  const db = {
     async get_object(
       { model_name, id }: { model_name: IModelsKeys; id: string },
       // { expand, author } = {}
@@ -68,15 +76,14 @@ export default function create_client(
 
       logger.info(`start getting ${Model.name} with id ${id}`);
 
-      const fetched_object = await Model.findById(id);
+      const fetched_object = await Model.findById(id).lean().exec();
 
       if (!fetched_object) {
         throw errors.not_found();
       }
 
       logger.info(`${Model.name} with id ${id} has been fetched successfully`);
-
-      return fetched_object;
+      return rename_id(fetched_object);
     },
 
     async create_object(
@@ -84,13 +91,12 @@ export default function create_client(
       // { expand, author } = {}
       options = {}
     ) {
-      logger.info('persistence.get_object');
+      logger.info('db.create_object');
 
       const Model = get_modal_by_modal_name(model_name);
+      const created_object = await Model.create(rename_id(body, 'id', '_id'));
 
-      const created_object = await Model.create(body);
-
-      return created_object;
+      return rename_id(created_object._doc);
     },
 
     async update_object(
@@ -98,11 +104,16 @@ export default function create_client(
       // { expand, author } = {}
       options = {}
     ) {
+      logger.info('db.update_object');
       const Model = get_modal_by_modal_name(model_name);
 
-      const updated_object = Model.findByIdAndUpdate(id, body, { new: true });
+      const updated_object = await Model.findByIdAndUpdate(id, body, {
+        new: true,
+      })
+        .lean()
+        .exec();
 
-      return updated_object;
+      return rename_id(updated_object);
     },
 
     async delete_object(
@@ -110,11 +121,13 @@ export default function create_client(
       // { expand, author } = {}
       options = {}
     ) {
+      logger.info('db.delete_object');
+
       const Model = get_modal_by_modal_name(model_name);
 
-      const deleted_object = Model.findByIdAndDelete(id, { new: true });
+      const deleted_object = await Model.findByIdAndDelete(id).lean().exec();
 
-      return deleted_object;
+      return rename_id(deleted_object);
     },
 
     async create_relation(relation: IRelation, options) {
@@ -131,10 +144,13 @@ export default function create_client(
 
       const Model = models[relation.src_model];
 
-      return Model.updateOne(
-        { id: relation.src_id },
+      const result = await Model.updateOne(
+        { _id: relation.src_id },
+        // @ts-ignore
         { $addToSet: { [relation.name]: relation.dst_id } }
       );
+
+      return result.modifiedCount > 0;
     },
     async delete_relation(relation: IRelation, options) {
       const model_config = models_config[relation.src_model];
@@ -150,10 +166,13 @@ export default function create_client(
 
       const Model = models[relation.src_model];
 
-      return Model.updateOne(
-        { id: relation.src_id },
+      const result = await Model.updateOne(
+        { _id: relation.src_id },
+        // @ts-ignore
         { $pull: { [relation.name]: relation.dst_id } }
       );
+
+      return result.modifiedCount > 0;
     },
     async relation_exists(relation: IRelation, options) {
       const model_config = models_config[relation.src_model];
@@ -174,7 +193,7 @@ export default function create_client(
       ]); */
 
       const [{ count }] = await Model.aggregate([
-        { $match: { _id: new mongoose.Types.ObjectId(relation.src_id) } },
+        { $match: { _id: relation.src_id } },
         { $project: { count: { $size: `$${relation.name}` } } },
       ]);
 
@@ -196,17 +215,30 @@ export default function create_client(
       const Model = models[relation.src_model];
       const DstModel = models[relation_config.type.replace('object:', '')];
 
-      const object = await Model.findById(relation.src_id, [
-        relation.name,
-      ]).populate({
-        path: relation.name,
-        model: DstModel,
-      });
+      const object = await Model.findById(relation.src_id, [relation.name])
+        .populate({
+          path: relation.name,
+          model: DstModel,
+          transform: (doc) => rename_id(doc),
+        })
+        .lean()
+        .exec();
 
       return object[relation.name];
+    },
+    truncate: async () => {
+      await Promise.all(
+        Object.keys(models_config).map(async (model_name: IModelsKeys) => {
+          const Model = models[model_name];
+
+          await Model.deleteMany({});
+        })
+      );
     },
     close: () => {
       return mongoose.connection.close();
     },
   };
+
+  return db;
 }

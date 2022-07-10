@@ -2,5 +2,7 @@
   "unknown_error": "An internal problem has occurred please check again later",
   "invalid_expands_query": "Invalid expand query",
   "model_not_found": "Model not found",
-  "not_found": "Entity with specified id does not exist"
+  "not_found": "Entity with specified id does not exist",
+  "invalid_resource": "This entity does not exist",
+  "validation_error": "validation error"
 }

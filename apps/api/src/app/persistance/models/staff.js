@@ -18,7 +18,7 @@ const staff = {
     },
     gender: {
       type: 'string',
-      enum: ['Male', 'Female'],
+      enum: ['male', 'female'],
     },
     address: {
       type: 'string',

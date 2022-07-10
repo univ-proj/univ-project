@@ -1,5 +1,5 @@
 type AssignmentTypes = 'file' | 'code';
-type GenderTypes = 'Male' | 'Female';
+type GenderTypes = 'male' | 'female';
 
 export interface Answer {
   file: File;

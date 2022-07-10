@@ -15,7 +15,7 @@ const assignment = {
     },
     type: {
       type: 'string',
-      // file, code
+      enum: ['file', 'code'],
     },
     file: {
       type: 'object:file',

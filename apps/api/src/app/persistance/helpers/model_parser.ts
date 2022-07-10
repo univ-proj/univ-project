@@ -6,7 +6,7 @@ const models_to_mongodb_map = {
   string: () => String,
   number: () => Number,
   date: () => Date,
-  object: () => mongoose.Types.ObjectId,
+  object: () => String, // ref
   enum: () => String,
   boolean: () => Boolean,
   array: Array.of,
@@ -51,7 +51,7 @@ function parse_modal_relation(
   }
 
   const field_type = {
-    type: mongoose.Types.ObjectId,
+    type: String,
     ref: model_key,
   };
 
@@ -100,7 +100,21 @@ export function parse_models(models_config: IModelMap) {
   return Object.entries(models_config).reduce<{
     [x in IModelsKeys]?: mongoose.Model<IModelMap[x]['model_ref']>;
   }>((acc, [model_key, model]) => {
-    const model_schema = new mongoose.Schema(model.fields, model.config);
+    const model_schema = new mongoose.Schema(
+      {
+        ...model.fields,
+        _id: {
+          type: String,
+          // unique: true,
+        }, // uuidv4
+      },
+      {
+        ...model.config,
+        // id: false,
+        // _id: false,
+        validateBeforeSave: false,
+      }
+    );
 
     acc[model_key] = mongoose.model(model_key, model_schema);
     return acc;

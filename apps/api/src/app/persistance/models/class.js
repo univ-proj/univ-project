@@ -15,7 +15,7 @@ const class_schema = {
     },
     type: {
       type: 'string',
-      // TODO: validator enum ['section', 'lecture']
+      enum: ['section', 'lecture'],
     },
     canceled: {
       type: 'boolean',
