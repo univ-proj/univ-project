@@ -6,7 +6,7 @@ export * from './lib/icons/back-icon/back-icon';
 export * from './lib/icons/download-icon/download-icon';
 export * from './lib/icons/chat-icon/chat-icon';
 export * from './lib/icons/visibility-off-icon/visibility-off-icon';
-export * from './lib/icons/visibility-icon-on/visibility-icon-on';
+export * from './lib/icons/visibility-on-icon/visibility-on-icon';
 export * from './lib/icons/video-icon/video-icon';
 export * from './lib/icons/pdf-icon/pdf-icon';
 export * from './lib/icons/assignments-icon/assignments-icon';

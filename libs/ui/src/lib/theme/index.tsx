@@ -1,10 +1,10 @@
 import { createTheme } from '@mui/material/styles';
-// import { createTheme } from '@material-ui/core/styles';
 
 export const theme = createTheme({
   palette: {
     primary: {
       main: '#6247AA',
+      contrastText: 'white',
     },
     secondary: {
       main: '#EAC504',
@@ -20,6 +20,7 @@ export const theme = createTheme({
     text: {
       primary: '#6247AA',
       secondary: '#8372B4',
+      disabled: 'white',
     },
     background: {
       default: '#FBFAFF',
@@ -27,3 +28,46 @@ export const theme = createTheme({
     },
   },
 });
+
+theme.components = {
+  MuiButton: {
+    styleOverrides: {
+      root: {
+        height: '40px',
+        borderRadius: '4px',
+        '& .MuiButton-startIcon': {
+          'margin-bottom': '-3px',
+        },
+      },
+      sizeLarge: {
+        width: '382px',
+      },
+      sizeMedium: {
+        width: '160px',
+      },
+    },
+    variants: [
+      {
+        props: { variant: 'outlined' },
+        style: {
+          color: `${theme.palette.primary.main}`,
+          borderColor: `${theme.palette.primary.main}`,
+        },
+      },
+      {
+        props: { variant: 'outlined', disabled: true },
+        style: {
+          color: `${theme.palette.text.secondary}!important`,
+          borderColor: `${theme.palette.text.secondary}!important`,
+        },
+      },
+      {
+        props: { variant: 'contained', disabled: true },
+        style: {
+          backgroundColor: `${theme.palette.text.secondary}!important`,
+          color: `${theme.palette.text.disabled}!important`,
+        },
+      },
+    ],
+  },
+};
