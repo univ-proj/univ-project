@@ -6,6 +6,7 @@
 import * as express from 'express';
 import error_handler from '@/middlewares/error_handler';
 import controllers from '@/controllers';
+import '@/components';
 
 const app = express();
 

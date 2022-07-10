@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@univ-project/typedefs": ["libs/typedefs/src/index.ts"],
       "@univ-project/ui": ["libs/ui/src/index.ts"]
     }
   },

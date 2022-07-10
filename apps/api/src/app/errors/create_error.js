@@ -8,8 +8,12 @@
  * @property {import("tracing").TracingContext} ctx
  *
  * @callback ErrorFactory
- * @param {any} data
+ * @param {any} [data]
  * @returns {IAPIError}
+ *
+ */
+
+/**
  *
  * Create an error object
  * @date 2021-04-11
