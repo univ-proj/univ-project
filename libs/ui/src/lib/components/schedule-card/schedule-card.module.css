@@ -1,0 +1,51 @@
+/*
+ * Replace this with your own classes
+ *
+ * e.g.
+ * .container {
+ * }
+*/
+
+.schedule_card {
+  width: 382px;
+  height: 180px;
+  background-color: #ece6f7;
+  color: #6247aa;
+  border-radius: 8px;
+  padding-top: 15px;
+  padding-left: 32px;
+}
+
+.text {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2rem;
+}
+
+.matrial_name {
+  width: 148.63px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.details {
+  display: inline-flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.time {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.location {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.prof_container {
+  display: inline-flex;
+  gap: 4px;
+  margin-top: 3px;
+}

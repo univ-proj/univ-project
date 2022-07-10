@@ -35,11 +35,18 @@ export function LectureCard(props: LectureCardProps) {
         <div className={styles['content-container']}>
           <div className={styles['container']} style={{ marginTop: '9px' }}>
             {/* <img alt="fff" src={logo} /> */}
-            <AssignmentsIcon type="outlined" />
+            <div className={styles['icon_container']}>
+              <AssignmentsIcon type="outlined" />
+            </div>
+
+            {/* <PdfIcon /> */}
             <div className={styles['text']}>{props.files_num} Files</div>
           </div>
-          <div className={styles['container']}>
-            <img alt="fff" src={logo2} />
+          <div className={styles['container']} style={{ marginTop: '9px' }}>
+            <div className={styles['icon_container']}>
+              <VideoIcon />
+            </div>
+
             <div className={styles['text']}>{props.videos_num} videos</div>
           </div>
         </div>
