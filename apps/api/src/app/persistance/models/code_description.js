@@ -1,4 +1,12 @@
 /**
+ * @typedef {object} CodeDescription
+ * @property {string} description
+ * @property {string} initial_tests
+ * @property {string} initial_code_snippet
+ * @property {string} tests
+ */
+
+/**
  *
  * @type {import('./model').IModel<import('libs/typedefs/src').CodeDescription>}
  */

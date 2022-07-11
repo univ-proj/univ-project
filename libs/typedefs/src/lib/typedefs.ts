@@ -2,6 +2,7 @@ type AssignmentTypes = 'file' | 'code';
 type GenderTypes = 'male' | 'female';
 
 export interface Answer {
+  type: AssignmentTypes;
   file: File;
   code: string;
 }
@@ -28,7 +29,7 @@ export interface File {
   mime_type: string;
 }
 export interface Level {
-  name: 'string';
+  name: string;
   programs: Program[];
   students: Student[];
   groups: Group[];
@@ -66,7 +67,7 @@ export interface Student {
 export interface Assignment {
   name: string;
   class: Class;
-  type: string;
+  type: AssignmentTypes;
   file: File;
   code_description: CodeDescription;
 

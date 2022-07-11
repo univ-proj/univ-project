@@ -1,4 +1,14 @@
 /**
+ * @typedef {object} Assignment
+ * @property {string} name
+ * @property {Class} class
+ * @property {string} type - enum:code,file
+ * @property {File} file
+ * @property {CodeDescription} code_description
+ * @property {array<Answer>} answers
+ */
+
+/**
  *
  * @type {import('./model').IModel<import('libs/typedefs/src').Assignment>}
  */

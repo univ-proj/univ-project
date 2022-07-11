@@ -1,4 +1,12 @@
 /**
+ * @typedef {object} Course
+ * @property {string} name
+ * @property {boolean} optional
+ * @property {Program} program
+ * @property {array<Class>} classes
+ */
+
+/**
  *
  * @type {import('./model').IModel<import('libs/typedefs/src').Course>}
  */

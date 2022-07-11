@@ -1,4 +1,13 @@
 /**
+ * @typedef {object} Group
+ * @property {string} name
+ * @property {Level} level
+ * @property {array<Class>} classes
+ * @property {array<Student>} students
+ * @property {array<Section>} sections
+ */
+
+/**
  *
  * @type {import('./model').IModel<import('libs/typedefs/src').Group>}
  */
