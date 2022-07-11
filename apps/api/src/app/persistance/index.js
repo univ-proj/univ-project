@@ -14,10 +14,14 @@ const database_drivers = {
 };
 
 /**
+ * @typedef {import('./database/mongodb').IDatabase} IPersistanceDriver
+ */
+
+/**
  *
  * @param {import('@/config').IConfig} config
  * @param {{[x: string]: IModel}} models
- * @returns {import('./database/mongodb').IDatabase}
+ * @returns {IPersistanceDriver}
  */
 export default function create_client(config, models) {
   logger.info('initializing persistence');
@@ -54,8 +58,9 @@ export default function create_client(config, models) {
   }
 
   /**
-   * @type {import('./database/mongodb').IDatabase}
+   * @type {IPersistanceDriver}
    */
+
   const persistence = {
     async get_object({ model_name, id }, options) {
       logger.info(`persistence.get_object ${model_name}`);

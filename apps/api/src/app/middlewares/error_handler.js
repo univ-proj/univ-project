@@ -30,6 +30,7 @@ function serialize_error(error) {
  * @returns {Promise<void>}
  */
 function log_uncaught_error(error) {
+  console.log(error);
   const err = extract_error(error);
 
   logger.error('An unknown error occurred', {
