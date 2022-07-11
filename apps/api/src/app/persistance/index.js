@@ -61,7 +61,6 @@ export default function create_client(config, models) {
       logger.info(`persistence.get_object ${model_name}`);
       const model_config = get_model_config(model_name);
 
-      logger.info('cache miss');
       const fetched_object = await db.get_object({ model_name, id }, options);
 
       if (!fetched_object) {

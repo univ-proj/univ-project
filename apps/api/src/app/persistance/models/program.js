@@ -1,4 +1,12 @@
 /**
+ * @typedef {object} Program
+ * @property {string} name
+ * @property {Level} level
+ * @property {array<Course>} courses
+ * @property {array<Student>} students
+ */
+
+/**
  *
  * @type {import('./model').IModel<import('libs/typedefs/src').Program>}
  */

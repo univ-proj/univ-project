@@ -1,4 +1,6 @@
 import * as express from 'express';
+import model_router from './model';
+import relations_router from './relations';
 
 const router = express.Router();
 
@@ -12,5 +14,8 @@ const router = express.Router();
  * @return {string} 200 - success response
  */
 router.get('/healthcheck', (_, res) => res.status(200).json());
+
+router.use(model_router);
+router.use(relations_router);
 
 export default router;

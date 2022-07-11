@@ -1,4 +1,21 @@
 /**
+ * @typedef {object} Student
+ * @property {string} name
+ * @property {string} phone
+ * @property {string} birth_date - date of birth - date
+ * @property {string} gender - enum:male,female
+ * @property {string} address
+ * @property {string} email
+ * @property {string} password
+ * @property {Level} level
+ * @property {Program} program
+ * @property {Group} group
+ * @property {Section} section
+ * @property {array<Attendance>} attendance
+ * @property {array<Course>} courses
+ */
+
+/**
  *
  * @type {import('./model').IModel<import('libs/typedefs/src').Student>}
  */

@@ -1,5 +1,5 @@
 import * as winston from 'winston';
-import * as config from '@/config';
+import config from '@/config';
 
 const custom_format = winston.format.printf((info) => {
   const { level, message, timestamp, ms, stack = '', service, ...meta } = info;
