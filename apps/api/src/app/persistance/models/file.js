@@ -1,4 +1,11 @@
 /**
+ * @typedef {object} File
+ * @property {string} name
+ * @property {string} url
+ * @property {string} mime_type
+ */
+
+/**
  *
  * @type {import('./model').IModel<import('libs/typedefs/src').File>}
  */

@@ -1,10 +1,9 @@
 import logger from '@/logger';
 import errors from '@/errors';
-import error_messages from '@/errors/error_messages.json';
+// import error_messages from '@/errors/error_messages.json';
 
 /**
  * Strip unwanted fields from error
- * @date 2021-05-01
  * @param {import("errors/create_error").IAPIError} err
  * @returns {import("errors/create_error").IAPIError}
  */
@@ -14,7 +13,6 @@ export function extract_error({ ctx, spans, ...err }) {
 
 /**
  * Identify which locale the user is requesting
- * @date 2021-04-11
  * @param {import("errors/create_error").IAPIError} err
  * @param {express.Request} req
  * @returns {import("errors/create_error").IAPIError}
@@ -22,18 +20,16 @@ export function extract_error({ ctx, spans, ...err }) {
 function serialize_error(error) {
   return {
     ...extract_error(error),
-    message: error_messages[error.code],
+    // message: error_messages[error.code],
   };
 }
 
 /**
  * Catch all uncaught errors
- * @date 2021-04-24
  * @param {Error} err
  * @returns {Promise<void>}
  */
 function log_uncaught_error(error) {
-  console.log(error);
   const err = extract_error(error);
 
   logger.error('An unknown error occurred', {
@@ -44,7 +40,6 @@ function log_uncaught_error(error) {
 
 /**
  * Identify which locale the user is requesting
- * @date 2021-04-11
  * @param {import("errors/create_error").IAPIError|Error} err
  * @param {express.Request} req
  * @param {express.Response} res

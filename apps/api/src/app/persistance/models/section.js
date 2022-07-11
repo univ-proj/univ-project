@@ -1,4 +1,13 @@
 /**
+ * @typedef {object} Section
+ * @property {string} name
+ * @property {Course} course
+ * @property {Group} group
+ * @property {array<Class>} classes
+ * @property {array<Student>} students
+ */
+
+/**
  *
  * @type {import('./model').IModel<import('libs/typedefs/src').Section>}
  */

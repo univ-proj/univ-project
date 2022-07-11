@@ -1,4 +1,21 @@
 /**
+ * @typedef {object} Class
+ * @property {string} name
+ * @property {string} date - start date - date
+ * @property {string} type - enum:section,lecture
+ * @property {boolean} canceled
+ * @property {string} location
+ * @property {Course} course
+ * @property {Group} group
+ * @property {Section} section
+ * @property {Staff} lecturer
+ * @property {array<Attendance>} attendance
+ * @property {array<Assignment>} assignments
+ * @property {array<Quiz>} quizzes
+ * @property {array<File>} files
+ */
+
+/**
  *
  * @type {import('./model').IModel<import('libs/typedefs/src').Class>}
  */

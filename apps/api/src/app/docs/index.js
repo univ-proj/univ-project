@@ -1,6 +1,9 @@
+import * as path from 'path';
+import * as jsdoc_swagger from 'express-jsdoc-swagger';
+import * as glob from 'glob';
+
 import config from '@/config';
 import logger from '@/logger';
-import * as jsdoc_swagger from 'express-jsdoc-swagger';
 
 /**
  * Initializes Swagger and serve UI documentation for the API
@@ -64,7 +67,18 @@ export const init = (app) => {
         scheme: 'basic',
       },
     },
-    filesPattern: './main.js',
+    filesPattern: [
+      ...glob.sync(
+        `${path.normalize(
+          __dirname + '/../../../apps/api/src/app/controllers'
+        )}/*.js`
+      ),
+      ...glob.sync(
+        `${path.normalize(
+          __dirname + '/../../../apps/api/src/app/persistance/models'
+        )}/*.js`
+      ),
+    ],
 
     // filesPattern: './main.js',
     // filesPattern: ['./**/*.route.js'],

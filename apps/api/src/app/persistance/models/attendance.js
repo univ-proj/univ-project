@@ -1,4 +1,11 @@
 /**
+ * @typedef {object} Attendance
+ * @property {boolean} attended
+ * @property {Student} student
+ * @property {Class} class
+ */
+
+/**
  *
  * @type {import('./model').IModel<import('libs/typedefs/src').Attendance>}
  */
