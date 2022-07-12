@@ -1,0 +1,21 @@
+.subject_page {
+  padding-top: 44px;
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+.subject_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.subjectCards_container {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 8px;
+  row-gap: 8px;
+}

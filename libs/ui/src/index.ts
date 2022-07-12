@@ -22,5 +22,6 @@ export * from './lib/ui';
 export * from './lib/theme';
 export * from './lib/components/subject-card/subject-card'
 export * from './lib/components/schedule-card/schedule-card';
+export * from './lib/components/lectureType-card/lectureType-card';
 // example
 // example 2
