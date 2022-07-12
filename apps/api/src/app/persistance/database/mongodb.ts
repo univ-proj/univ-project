@@ -58,11 +58,42 @@ export default function create_client(
   }
 
   function rename_id(object, old_key = '_id', new_key = 'id') {
-    return _(object).omit(old_key).set(new_key, object[old_key]).value();
+    return (
+      object && _(object).omit(old_key).set(new_key, object[old_key]).value()
+    );
   }
 
   const parsed_models_config = parse_modal_config_relations(models_config);
   const models = parse_models(parsed_models_config);
+
+  const default_expand = {
+    fields: [],
+    relations: [],
+  };
+
+  function build_populate_query(expand = default_expand) {
+    const fields_expands = expand?.fields?.map((field) => {
+      const query = {
+        path: field.field_name,
+        transform: (val) => rename_id(val),
+        populate: build_populate_query(field.expands),
+      };
+
+      return query;
+    });
+
+    const relations_expands = expand?.relations?.map((relation) => {
+      const query = {
+        path: relation.field_name,
+        transform: (val) => rename_id(val),
+        populate: build_populate_query(relation.expands),
+      };
+
+      return query;
+    });
+
+    return [...fields_expands, ...relations_expands];
+  }
 
   const db = {
     async get_object(
@@ -76,7 +107,10 @@ export default function create_client(
 
       logger.info(`start getting ${Model.name} with id ${id}`);
 
-      const fetched_object = await Model.findById(id).lean().exec();
+      const fetched_object = await Model.findById(id)
+        .populate(build_populate_query(options.expand))
+        .lean()
+        .exec();
 
       if (!fetched_object) {
         throw errors.not_found();
@@ -102,8 +136,7 @@ export default function create_client(
 
     async update_object(
       { model_name, id, ...body }: { model_name: IModelsKeys; id: string },
-      // { expand, author } = {}
-      options = {}
+      options
     ) {
       logger.info('db.update_object');
       const Model = get_modal_by_modal_name(model_name);
@@ -111,6 +144,7 @@ export default function create_client(
       const updated_object = await Model.findByIdAndUpdate(id, body, {
         new: true,
       })
+        .populate(build_populate_query(options.expand))
         .lean()
         .exec();
 
@@ -119,14 +153,16 @@ export default function create_client(
 
     async delete_object(
       { model_name, id }: { model_name: IModelsKeys; id: string },
-      // { expand, author } = {}
-      options = {}
+      options
     ) {
       logger.info('db.delete_object');
 
       const Model = get_modal_by_modal_name(model_name);
 
-      const deleted_object = await Model.findByIdAndDelete(id).lean().exec();
+      const deleted_object = await Model.findByIdAndDelete(id)
+        .populate(build_populate_query(options.expand))
+        .lean()
+        .exec();
 
       return rename_id(deleted_object);
     },
@@ -221,6 +257,7 @@ export default function create_client(
           path: relation.name,
           model: DstModel,
           transform: (doc) => rename_id(doc),
+          populate: build_populate_query(options.expand),
         })
         .lean()
         .exec();

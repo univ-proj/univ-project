@@ -14,6 +14,7 @@ import date from './date';
 import boolean from './boolean';
 import array from './array';
 import enum_validator from './enum';
+import object from './object';
 import * as _ from 'lodash';
 
 const type_validators = {
@@ -22,6 +23,7 @@ const type_validators = {
   date,
   array,
   boolean,
+  object,
 };
 
 const utils_validators = {
