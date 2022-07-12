@@ -223,7 +223,7 @@ export default function create_client(config, models) {
       const parsed_expand = parse_expand_query(
         models,
         dst_model_name,
-        options.expand
+        options?.expand
       );
 
       return db.list_relations(relation, { expand: parsed_expand });

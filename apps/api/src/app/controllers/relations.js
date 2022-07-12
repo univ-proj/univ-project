@@ -74,7 +74,7 @@ relations_router.post(
  * @return {void} 200 - success response
  */
 relations_router.delete(
-  '/:src_model/:src_id/:edge_name/:dst_id',
+  '/:src_model/:src_id/:relation_name/:dst_id',
   async (req, res) => {
     const { src_model, relation_name, src_id, dst_id } = req.params;
 
