@@ -12,17 +12,23 @@ const relations_router = express.Router();
  * @tags Model
  * @description list all objects that has relation of relation name with the src modal with id :src_id
  * @summary list modal relation
- * @param {string} model_name.path.required - enum:answer,class,file,level,quiz,student,assignment,code_description,group,section,attendance,course,program,staff
+ * @param {string} src_model.path.required - enum:answer,class,file,level,quiz,student,assignment,code_description,group,section,attendance,course,program,staff
  * @param {string} src_id.path.required - resource id
  * @param {string} relation_name.path.required - relation name
+ * @param {string} expand.query - expand
  * @return {ListingResponseModal} 200 - success response
  */
 relations_router.get('/:src_model/:src_id/:relation_name', async (req, res) => {
-  const result = await persistance.list_relations({
-    name: req.params.relation_name,
-    src_model: req.params.src_model,
-    src_id: req.params.src_id,
-  });
+  const result = await persistance.list_relations(
+    {
+      name: req.params.relation_name,
+      src_model: req.params.src_model,
+      src_id: req.params.src_id,
+    },
+    {
+      expand: req.query.expand,
+    }
+  );
   res.json(result);
 });
 
@@ -31,7 +37,7 @@ relations_router.get('/:src_model/:src_id/:relation_name', async (req, res) => {
  * @tags Model
  * @description create relation of specified :relation_name between :src_modal of :src_id and modal of :dst_id
  * @summary create relation
- * @param {string} model_name.path.required - enum:answer,class,file,level,quiz,student,assignment,code_description,group,section,attendance,course,program,staff
+ * @param {string} src_model.path.required - enum:answer,class,file,level,quiz,student,assignment,code_description,group,section,attendance,course,program,staff
  * @param {string} src_id.path.required - resource id
  * @param {string} relation_name.path.required - relation name
  * @param {string} dst_id.path.required - destination modal id
@@ -42,12 +48,15 @@ relations_router.post(
   async (req, res) => {
     const { src_model, relation_name, src_id, dst_id } = req.params;
 
-    await persistance.create_relation({
-      name: relation_name,
-      dst_id,
-      src_model,
-      src_id,
-    });
+    await persistance.create_relation(
+      {
+        name: relation_name,
+        dst_id,
+        src_model,
+        src_id,
+      },
+      {}
+    );
 
     res.status(200).end();
   }
@@ -58,7 +67,7 @@ relations_router.post(
  * @tags Model
  * @description delete relation of specified :relation_name between :src_modal of :src_id and modal of :dst_id
  * @summary delete relation
- * @param {string} model_name.path.required - enum:answer,class,file,level,quiz,student,assignment,code_description,group,section,attendance,course,program,staff
+ * @param {string} src_model.path.required - enum:answer,class,file,level,quiz,student,assignment,code_description,group,section,attendance,course,program,staff
  * @param {string} src_id.path.required - resource id
  * @param {string} relation_name.path.required - relation name
  * @param {string} dst_id.path.required - destination modal id
@@ -69,12 +78,15 @@ relations_router.delete(
   async (req, res) => {
     const { src_model, relation_name, src_id, dst_id } = req.params;
 
-    await persistance.delete_relation({
-      name: relation_name,
-      dst_id,
-      src_model,
-      src_id,
-    });
+    await persistance.delete_relation(
+      {
+        name: relation_name,
+        dst_id,
+        src_model,
+        src_id,
+      },
+      {}
+    );
 
     res.status(200).end();
   }

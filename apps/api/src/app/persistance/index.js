@@ -4,6 +4,7 @@ import mongodb from '@/persistance/database/mongodb';
 import id_generator from './utils/id_generator';
 import { runFieldsValidators } from '@/persistance/validators';
 import * as _ from 'lodash';
+import parse_expand_query from './helpers/expands_parser';
 
 /**
  * @typedef {keyof typeof import('@/persistance/models')} IModalKeys
@@ -14,10 +15,14 @@ const database_drivers = {
 };
 
 /**
+ * @typedef {import('./database/mongodb').IDatabase} IPersistanceDriver
+ */
+
+/**
  *
  * @param {import('@/config').IConfig} config
  * @param {{[x: string]: IModel}} models
- * @returns {import('./database/mongodb').IDatabase}
+ * @returns {IPersistanceDriver}
  */
 export default function create_client(config, models) {
   logger.info('initializing persistence');
@@ -54,14 +59,20 @@ export default function create_client(config, models) {
   }
 
   /**
-   * @type {import('./database/mongodb').IDatabase}
+   * @type {IPersistanceDriver}
    */
+
   const persistence = {
-    async get_object({ model_name, id }, options) {
+    async get_object({ model_name, id }, { expand } = {}) {
       logger.info(`persistence.get_object ${model_name}`);
       const model_config = get_model_config(model_name);
 
-      const fetched_object = await db.get_object({ model_name, id }, options);
+      const parsed_expand = parse_expand_query(models, model_name, expand);
+
+      const fetched_object = await db.get_object(
+        { model_name, id },
+        { expand: parsed_expand }
+      );
 
       if (!fetched_object) {
         throw errors.not_found();
@@ -132,11 +143,17 @@ export default function create_client(config, models) {
       // will fetch object and throw if not found
       await this.get_object({ model_name, id });
 
+      const parsed_expand = parse_expand_query(
+        models,
+        model_name,
+        options.expand
+      );
+
       // TODO: add Pub/Sub (db hooks)
       logger.info('persist the updates on db layer');
       const updated_object = await db.update_object(
         { model_name, id, ...sanitized_body },
-        options
+        { expand: parsed_expand }
       );
 
       return updated_object;
@@ -151,9 +168,15 @@ export default function create_client(config, models) {
       await this.get_object({ model_name, id });
 
       logger.info('delete object from db layer');
+      const parsed_expand = parse_expand_query(
+        models,
+        model_name,
+        options.expand
+      );
+
       const deleted_object = await db.delete_object(
         { model_name, id },
-        options
+        { expand: parsed_expand }
       );
 
       return deleted_object;
@@ -183,8 +206,27 @@ export default function create_client(config, models) {
       logger.info(
         `persistance.list_relations of type "${relation.name}" for ${relation.src_model} model with id ${relation.src_id}`
       );
+      const model_config = models[relation.src_model];
 
-      return db.list_relations(relation, options);
+      if (!model_config) {
+        throw errors.model_not_found();
+      }
+
+      const relation_config = model_config.relations[relation.name];
+      // check if relation exists
+      if (!relation_config) {
+        throw errors.invalid_db_relation();
+      }
+
+      const dst_model_name = relation_config.type.replace('object:', '');
+
+      const parsed_expand = parse_expand_query(
+        models,
+        dst_model_name,
+        options.expand
+      );
+
+      return db.list_relations(relation, { expand: parsed_expand });
     },
     truncate() {
       logger.info(`persistance.truncate`);

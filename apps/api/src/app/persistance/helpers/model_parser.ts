@@ -52,11 +52,17 @@ function parse_modal_relation(
 
   const field_type = {
     type: String,
-    ref: model_key,
+    ref: type,
   };
 
+  if (relation_type === 'relation') {
+    return {
+      type: [field_type],
+      select: false,
+    };
+  }
   return {
-    type: relation_type === 'relation' ? [field_type] : field_type,
+    ...field_type,
     select: false,
   };
 }

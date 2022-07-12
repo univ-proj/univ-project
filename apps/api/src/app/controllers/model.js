@@ -14,12 +14,18 @@ const model_router = express.Router();
  * @summary find modal by id
  * @param {string} model_name.path.required - enum:answer,class,file,level,quiz,student,assignment,code_description,group,section,attendance,course,program,staff
  * @param {string} id.path.required - resource id
+ * @param {string} expand.query - expand
  * @return {ResponseModal} 200 - success response
  */
 model_router.get('/:model_name/:id', async (req, res) => {
   const { model_name, id } = req.params;
 
-  const fetched_object = await persistance.get_object({ model_name, id }, {});
+  const fetched_object = await persistance.get_object(
+    { model_name, id },
+    {
+      expand: req.query.expand,
+    }
+  );
 
   res.json(fetched_object);
 });
@@ -55,6 +61,7 @@ model_router.post('/:model_name', async (req, res) => {
  * @param {string} model_name.path.required - enum:answer,class,file,level,quiz,student,assignment,code_description,group,section,attendance,course,program,staff
  * @param {string} id.path.required - resource id
  * @param {ResponseModal} request.body.required - update object body - application/json
+ * @param {string} expand.query - expand
  * @return {ResponseModal} 200 - success response
  */
 model_router.patch('/{model_name}/{id}', async (req, res) => {
@@ -66,7 +73,9 @@ model_router.patch('/{model_name}/{id}', async (req, res) => {
       id,
       ...req.body,
     },
-    {}
+    {
+      expand: req.query.expand,
+    }
   );
 
   res.json(updated_object);
@@ -79,6 +88,7 @@ model_router.patch('/{model_name}/{id}', async (req, res) => {
  * @summary Delete resource
  * @param {string} model_name.path.required - enum:answer,class,file,level,quiz,student,assignment,code_description,group,section,attendance,course,program,staff
  * @param {string} id.path.required - resource id
+ * @param {string} expand.query - expand
  * @return {ResponseModal} 200 - success response
  */
 model_router.delete('/:model_name/:id', async (req, res) => {
@@ -86,7 +96,9 @@ model_router.delete('/:model_name/:id', async (req, res) => {
 
   const deleted_object = await persistance.delete_object(
     { model_name, id },
-    {}
+    {
+      expand: req.query.expand,
+    }
   );
 
   res.json(deleted_object);
