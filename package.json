@@ -8,7 +8,8 @@
     "test": "nx test",
     "storybook:ui": "nx run ui:storybook",
     "api:start": "nx serve api",
-    "mobile:start": "nx serve mobile"
+    "mobile:start": "nx serve mobile",
+    "web:start": "nx serve web"
   },
   "private": true,
   "dependencies": {
