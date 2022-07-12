@@ -15,7 +15,7 @@ const custom_format = winston.format.printf((info) => {
 const { combine, timestamp, ms, colorize, errors } = winston.format;
 
 const logger = winston.createLogger({
-  level: config.log_level,
+  level: config?.log_level,
   silent: process.env.NODE_ENV === 'test',
   format: combine(
     errors({ stack: true }),
@@ -24,7 +24,7 @@ const logger = winston.createLogger({
     ms(),
     custom_format
   ),
-  defaultMeta: { service: config.service },
+  defaultMeta: { service: config?.service },
   transports: [new winston.transports.Console()],
 });
 

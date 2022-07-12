@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
+    "client-sdk": "libs/client-sdk",
     "mobile": "apps/mobile",
     "mobile-e2e": "apps/mobile-e2e",
     "typedefs": "libs/typedefs",

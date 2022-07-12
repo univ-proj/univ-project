@@ -64,7 +64,7 @@ model_router.post('/:model_name', async (req, res) => {
  * @param {string} expand.query - expand
  * @return {ResponseModal} 200 - success response
  */
-model_router.patch('/{model_name}/{id}', async (req, res) => {
+model_router.patch('/:model_name/:id', async (req, res) => {
   const { model_name, id } = req.params;
 
   const updated_object = await persistance.update_object(
