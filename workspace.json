@@ -7,6 +7,8 @@
     "mobile-e2e": "apps/mobile-e2e",
     "typedefs": "libs/typedefs",
     "ui": "libs/ui",
-    "ui-e2e": "apps/ui-e2e"
+    "ui-e2e": "apps/ui-e2e",
+    "web": "apps/web",
+    "web-e2e": "apps/web-e2e"
   }
 }
