@@ -5,6 +5,7 @@
 
 import * as express from 'express';
 import 'express-async-errors';
+import * as cors from 'cors';
 import error_handler from '@/middlewares/error_handler';
 import controllers from '@/controllers';
 import * as bodyParser from 'body-parser';
@@ -13,6 +14,7 @@ import '@/components';
 const app = express();
 
 // middleware
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/api', controllers);

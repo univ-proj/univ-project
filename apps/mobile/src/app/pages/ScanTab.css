@@ -1,0 +1,9 @@
+.scan-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 99%;
+}
+
+.scan-container > div {
+  margin: auto auto 0 auto;
+}

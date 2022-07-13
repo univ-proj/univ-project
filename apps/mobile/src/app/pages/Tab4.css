@@ -1,0 +1,91 @@
+.attendence_page {
+  padding-top: 44px;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+}
+
+.profile_picture {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.student_name {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333333;
+  margin-top: 16px;
+}
+
+.student_grade {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333333;
+  margin-top: 8px;
+}
+
+.atendence_overview_box {
+  margin-top: 16px;
+  display: inline-flex;
+}
+
+.attendence_box {
+  width: 150px;
+  height: 40px;
+  border: 1px solid #6247aa;
+  padding: 11.5px 7.5px 11.5px 7.5px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6247aa;
+  background-color: #ece6f7;
+  position: relative;
+}
+
+/* .attendence {
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
+
+.overview_box {
+  width: 114px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #8372b4;
+  border: 1px solid #8372b4;
+  position: relative;
+}
+
+.overview {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.attendecCards_container {
+  margin-top: 40px;
+}
+
+.overview_container {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.overview_text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.overviewCards_container {
+  display: inline-flex;
+  gap: 28px;
+  margin-top: 16px;
+}

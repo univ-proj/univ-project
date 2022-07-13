@@ -5,6 +5,8 @@ export interface Answer {
   type: AssignmentTypes;
   file: File;
   code: string;
+  // TODO:
+  // student: Student
 }
 export interface Class {
   name: string;
@@ -104,8 +106,8 @@ export interface Section {
 
 export interface Attendance {
   attended: boolean;
-  student: Student;
-  class: Class;
+  student: Student | string;
+  class: Class | string;
 }
 
 export interface Course {
