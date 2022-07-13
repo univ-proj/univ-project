@@ -106,8 +106,8 @@ export interface Section {
 
 export interface Attendance {
   attended: boolean;
-  student: Student;
-  class: Class;
+  student: Student | string;
+  class: Class | string;
 }
 
 export interface Course {

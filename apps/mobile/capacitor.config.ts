@@ -5,6 +5,9 @@ const config: CapacitorConfig = {
   appName: 'mobile',
   webDir: '../../dist/apps/mobile',
   bundledWebRuntime: false,
+  server: {
+    cleartext: true,
+  },
 };
 
 export default config;
