@@ -35,6 +35,7 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import LecturePage from './pages/lecturePage/lecturePage';
+import Tab4 from './pages/Tab4';
 
 const App: React.FC = () => {
   return (
@@ -45,6 +46,7 @@ const App: React.FC = () => {
             <Route path="/tab1" component={Tab1} exact={true} />
             <Route path="/tab2" component={Tab2} exact={true} />
             <Route path="/tab3" component={Tab3} />
+            <Route path="/tab4" component={Tab4} />
             <Route path="/subjectPage" component={SubjectPage} />
             <Route path="/lecturePage" component={LecturePage} />
             <Route
@@ -58,13 +60,18 @@ const App: React.FC = () => {
               <IonIcon icon={triangle} />
               <IonLabel>Home</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="tab2" href="/tab2">
+            <IonTabButton tab="Subjects" href="/tab2">
               <IonIcon icon={ellipse} />
-              <IonLabel>Tab 2</IonLabel>
+              <IonLabel>Subjects</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="tab3" href="/tab3">
+            <IonTabButton tab="Notice" href="/tab3">
               <IonIcon icon={square} />
-              <IonLabel>Tab 3</IonLabel>
+              <IonLabel>Notice</IonLabel>
+            </IonTabButton>
+
+            <IonTabButton tab="Profile" href="/tab4">
+              <IonIcon icon={square} />
+              <IonLabel>Profile</IonLabel>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
