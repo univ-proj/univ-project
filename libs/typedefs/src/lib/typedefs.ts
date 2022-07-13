@@ -5,6 +5,8 @@ export interface Answer {
   type: AssignmentTypes;
   file: File;
   code: string;
+  // TODO:
+  // student: Student
 }
 export interface Class {
   name: string;

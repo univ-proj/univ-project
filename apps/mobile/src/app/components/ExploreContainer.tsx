@@ -1,4 +1,6 @@
-import React from 'react';
+import * as api from '@univ-project/client-sdk';
+import { Attendance, Group, Student } from '@univ-project/typedefs';
+import React, { useEffect } from 'react';
 import './ExploreContainer.css';
 
 interface ContainerProps {
