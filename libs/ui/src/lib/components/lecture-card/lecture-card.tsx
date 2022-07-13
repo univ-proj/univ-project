@@ -59,8 +59,8 @@ export function LectureCard(props: LectureCardProps) {
           src={props.prof_img}
         />
         <div className={styles['prof_name']}>
-          <div className={styles['text']}>Prof</div>
-          <div className={styles['text']}>{props.prof_name}</div>
+          <div className={styles['text']}>Uploaded by</div>
+          <div className={styles['text']}>Eng/ {props.prof_name}</div>
         </div>
       </div>
     </div>

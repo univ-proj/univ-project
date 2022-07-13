@@ -1,34 +1,41 @@
 import React from 'react';
-import {
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-} from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
 import './Tab2.css';
-
+import logo from '../../assets/Logo1.svg';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { ScheduleCard } from '../../../../../libs/ui/src/lib/components/schedule-card/schedule-card';
+import { SubjectCard } from '@univ-project/ui';
+import { Link } from 'react-router-dom';
 
 const Tab2: React.FC = () => {
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Tab 2</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 2 page" />
-      </IonContent>
-    </IonPage>
+    <div className="subject_page">
+      <div className="logo-container">
+        <img alt="fff" src={logo} />
+      </div>
+
+      <div className="subject_container">06 Subjects</div>
+
+      <div className="subjectCards_container">
+        <Link to="/subjectPage" style={{ textDecoration: 'none' }}>
+          <SubjectCard
+            subjectName="Physics"
+            lectures_num={1}
+            sections_num={1}
+            prof_name="Rasha Orban"
+            prof_picture="mmmm"
+            update={true}
+          />
+        </Link>
+
+        <SubjectCard
+          subjectName="Maths"
+          lectures_num={1}
+          sections_num={1}
+          prof_name="Rasha Orban"
+          prof_picture="mmmm"
+          update={true}
+        />
+      </div>
+    </div>
   );
 };
 
