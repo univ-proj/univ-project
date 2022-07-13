@@ -1,0 +1,48 @@
+.notification {
+  display: inline-flex;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #ece6f7;
+  margin-top: 16px;
+}
+
+.notification_details {
+  display: flex;
+  flex-direction: column;
+}
+
+.details {
+  display: inline-flex;
+  gap: 24px;
+}
+
+.update_box {
+  width: 43px;
+  height: 20px;
+  background-color: #eac504;
+  border-radius: 4px;
+  position: relative;
+}
+
+.box_text {
+  font-size: 12px;
+  font-weight: 600;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #333333;
+}
+
+.notification_profName {
+  font-size: 16px;
+  font-weight: 600;
+  color: #6247aa;
+}
+
+.notification_body {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6247aa;
+  margin-top: 8.5px;
+}

@@ -1,0 +1,46 @@
+.attendence_card {
+  width: 382px;
+  height: 180px;
+  padding: 32px;
+  border-radius: 8px;
+}
+
+.attendence_card_content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.subject_name {
+  width: 148.63px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.time {
+  display: inline-flex;
+  gap: 4px;
+  margin-top: 16px;
+}
+
+.start_end_date {
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.prof_details {
+  display: inline-flex;
+  gap: 4px;
+  margin-top: 9px;
+}
+
+.prof_name {
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.icon_container {
+  margin-top: 36px;
+}
