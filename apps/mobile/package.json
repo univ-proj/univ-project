@@ -2,5 +2,8 @@
   "name": "mobile",
   "devDependencies": {
     "@capacitor/cli": "^3.2.5"
+  },
+  "dependencies": {
+    "@capacitor-community/barcode-scanner": "^2.1.1"
   }
 }

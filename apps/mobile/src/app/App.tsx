@@ -15,6 +15,7 @@ import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 import SubjectPage from './pages/subjectPage/subjectPage';
+import { ScanIcon } from '@univ-project/ui';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -35,6 +36,8 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import LecturePage from './pages/lecturePage/lecturePage';
+import ScanTab from './pages/ScanTab';
+
 import Tab4 from './pages/Tab4';
 
 const App: React.FC = () => {
@@ -49,6 +52,7 @@ const App: React.FC = () => {
             <Route path="/tab4" component={Tab4} />
             <Route path="/subjectPage" component={SubjectPage} />
             <Route path="/lecturePage" component={LecturePage} />
+            <Route path="/tab4" component={ScanTab} />
             <Route
               path="/"
               render={() => <Redirect to="/tab1" />}
@@ -72,6 +76,12 @@ const App: React.FC = () => {
             <IonTabButton tab="Profile" href="/tab4">
               <IonIcon icon={square} />
               <IonLabel>Profile</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="tab4" href="/tab4">
+              {/* <IonIcon> */}
+              <ScanIcon type="outlined" />
+              {/* </IonIcon> */}
+              <IonLabel>Tab 4</IonLabel>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>

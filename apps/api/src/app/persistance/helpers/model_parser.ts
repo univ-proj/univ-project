@@ -63,7 +63,7 @@ function parse_modal_relation(
   }
   return {
     ...field_type,
-    select: false,
+    // select: false,
   };
 }
 
