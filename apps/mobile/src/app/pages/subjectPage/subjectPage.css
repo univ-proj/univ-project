@@ -1,0 +1,79 @@
+.subject_page {
+  padding-top: 44px;
+  padding-right: 16px;
+  padding-left: 16px;
+  position: relative;
+}
+
+.backIcon_container {
+  position: absolute;
+  top: 44px;
+  left: 16px;
+}
+
+.info_container {
+  text-align: center;
+}
+
+.subject_name {
+  margin-top: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4rem;
+  color: #333333;
+}
+
+.prof_img_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.prof_name {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #333333;
+}
+
+.prof_position {
+  font-size: 12px;
+  font-weight: 500;
+  color: #777777;
+  margin-top: 8px;
+}
+
+.lectures_sections_box {
+  margin-top: 40px;
+  display: inline-flex;
+}
+
+.lectures_box {
+  width: 114px;
+  height: 40px;
+  padding: 11.5px 16px 11.5px 16px;
+  border: 1px solid #6247aa;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6247aa;
+  background-color: #ece6f7;
+}
+
+.sections_box {
+  width: 114px;
+  height: 40px;
+  padding: 11.5px 16px 11.5px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #8372b4;
+  border: 1px solid #8372b4;
+}
+
+.lecture_cards_container {
+  margin-top: 41px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 8px;
+  row-gap: 8px;
+}

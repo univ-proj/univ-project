@@ -1,0 +1,21 @@
+.lecturePage {
+  padding-top: 44px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.lecturePage_subjectName {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333333;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.lectureTypeCards_container {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 8px;
+  row-gap: 8px;
+}

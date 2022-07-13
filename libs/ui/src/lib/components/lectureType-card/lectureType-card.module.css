@@ -1,0 +1,27 @@
+.lectureType_card {
+  width: 187px;
+  height: 220px;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #ece6f7;
+}
+
+.lecture_type {
+  font-size: 16px;
+  font-weight: 700;
+  color: #6247aa;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.lecture_type-topic {
+  font-size: 12px;
+  font-weight: 600;
+  color: #8372b4;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.button_container {
+  margin-top: 40px;
+}
