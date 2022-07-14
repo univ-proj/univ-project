@@ -5,6 +5,7 @@ import id_generator from './utils/id_generator';
 import { runFieldsValidators } from '@/persistance/validators';
 import * as _ from 'lodash';
 import parse_expand_query from './helpers/expands_parser';
+import { extract_filters, strip_invalid_filters } from './utils/search_helpers';
 
 /**
  * @typedef {keyof typeof import('@/persistance/models')} IModalKeys
@@ -181,6 +182,35 @@ export default function create_client(config, models) {
 
       return deleted_object;
     },
+    async listing(model_name, listing_options, options = {}) {
+      logger.info(`persistence.listing ${model_name}`);
+      const model_config = get_model_config(model_name);
+
+      // extract filters from query
+      const filters = extract_filters(listing_options.filter);
+
+      // filter out undefined filters
+      const valid_filters = strip_invalid_filters(filters, model_config);
+
+      logger.info('delete object from db layer');
+      const parsed_expand = parse_expand_query(
+        models,
+        model_name,
+        options.expand
+      );
+
+      return db.listing(
+        model_name,
+        {
+          ...listing_options,
+          filters: valid_filters,
+        },
+        {
+          expand: parsed_expand,
+        }
+      );
+    },
+
     async create_relation(relation, options) {
       logger.info(
         `persistance.create_relation "${relation.name}" for ${relation.src_model} model with id ${relation.src_id}`

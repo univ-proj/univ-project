@@ -15,7 +15,7 @@ import {
  * @property {SchemaOptions} config
  * @property {{[x in keyof T]: {type: string, index: boolean}}} fields
  * @property {Object.<string, {type: string}>} relations
- * @property {[keyof T]} sortable_fields
+ * @property {[keyof T]} searchable_attributes
  * @property {{ filters: [keyof T] }} search
  */
 

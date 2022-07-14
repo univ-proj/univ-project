@@ -30,7 +30,7 @@ const code_description = {
     },
   },
   relations: {},
-  sortable_fields: [],
+  searchable_attributes: [],
   search: {
     filters: [],
   },

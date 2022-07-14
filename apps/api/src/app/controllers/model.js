@@ -8,6 +8,41 @@ const model_router = express.Router();
  */
 
 /**
+ * GET /api/{model_name}
+ * @tags Model
+ * @description List a resource
+ * @summary listing
+ * @param {string} model_name.path.required - enum:answer,class,file,level,quiz,student,assignment,code_description,group,section,attendance,course,program,staff
+ * @param {string} search.query - search text to search the entities
+ * @param {string} filter.query - key value pairs to filter by
+ * @param {number} page_number.query - required page number
+ * @param {number} page_size.query - required page size
+ * @param {string} sort.query - <attribute_name> for asc & -<attribute_name> for desc
+ * @param {string} expand.query - expand
+ * @return {ResponseModal} 200 - success response
+ */
+model_router.get('/:model_name/', async (req, res) => {
+  const { model_name } = req.params;
+  const { search, filter, page_number, sort, page_size, expand } = req.query;
+
+  const fetched_object = await persistance.listing(
+    model_name,
+    {
+      search,
+      filter,
+      page_number,
+      sort,
+      page_size,
+    },
+    {
+      expand,
+    }
+  );
+
+  res.json(fetched_object);
+});
+
+/**
  * GET /api/{model_name}/{id}
  * @tags Model
  * @description Find specific resource by specifying the model_name and the id

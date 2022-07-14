@@ -30,7 +30,7 @@ const course = {
       type: 'object:class',
     },
   },
-  sortable_fields: [],
+  searchable_attributes: [],
   search: {
     filters: [],
   },

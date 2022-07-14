@@ -47,7 +47,7 @@ const staff = {
       type: 'object:course',
     },
   },
-  sortable_fields: [],
+  searchable_attributes: [],
   search: {
     filters: [],
   },
