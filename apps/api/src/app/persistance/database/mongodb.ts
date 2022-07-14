@@ -11,6 +11,7 @@ import {
   parse_modal_config_relations,
   parse_models,
 } from '../helpers/model_parser';
+import convert_filter_to_db_query from '../helpers/convert_filter_to_db_query';
 
 export type IModelsKeys = keyof typeof import('@/persistance/models');
 
@@ -165,6 +166,69 @@ export default function create_client(
         .exec();
 
       return rename_id(deleted_object);
+    },
+    async listing(
+      model_name: IModelsKeys,
+      {
+        search,
+        filters,
+        sort,
+        page_number = 1,
+        page_size = config.default_page_size,
+      }: {
+        search: string;
+        filters: string | any[];
+        sort: string;
+        page_number: number;
+        page_size: number;
+      },
+      options
+    ) {
+      logger.info('db.listing');
+      const model_config = models_config[model_name];
+
+      const Model = get_modal_by_modal_name(model_name);
+      console.log(filters);
+      logger.info(`start listing ${Model.name} with filters`, {
+        search,
+        filters,
+      });
+
+      const query = {
+        ...convert_filter_to_db_query(filters as any),
+      };
+
+      const search_query = model_config.searchable_attributes.map((attr) => ({
+        [attr]: {
+          $regex: new RegExp('^(.*)?' + _.escapeRegExp(search) + '(.*)?', 'i'),
+        },
+      }));
+
+      if (search && search_query.length) {
+        query['$or'] = search_query;
+      }
+
+      page_size = Number(page_size) || 10;
+      const query_options = {
+        sort,
+        skip: (page_number - 1) * page_size,
+        limit: page_size,
+      };
+
+      const [count, results] = await Promise.all([
+        Model.countDocuments(query),
+        Model.find(query, null, query_options)
+          .populate(build_populate_query(options.expand))
+          .lean()
+          .exec(),
+      ]);
+
+      // return results;
+
+      return {
+        pagination: { count, page_number, page_size },
+        results: results.map((el) => rename_id(el)),
+      };
     },
 
     async create_relation(relation: IRelation, options) {

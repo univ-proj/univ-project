@@ -67,7 +67,7 @@ const class_schema = {
       type: 'object:file',
     },
   },
-  sortable_fields: [],
+  searchable_attributes: [],
   search: {
     filters: [],
   },

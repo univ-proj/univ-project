@@ -26,7 +26,7 @@ const file = {
     },
   },
   relations: {},
-  sortable_fields: [],
+  searchable_attributes: [],
   search: {
     filters: [],
   },
