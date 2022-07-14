@@ -1,18 +1,46 @@
-import { Student, Course } from '@univ-project/typedefs';
+import { Student, Course, Staff } from '@univ-project/typedefs';
 import * as _ from 'lodash';
-import * as api from './client-sdk';
+import { filter } from 'lodash';
+import * as api from '../index';
 
 describe('clientSdk', () => {
   const studentBody = {
     name: 'Mahmoud',
     email: 'mahmoudelzoka@gmail.com',
   };
+  const staffBody = {
+    name: 'Ahmed',
+    email: 'ahmed@gmail.com',
+    password: '123456',
+  };
   let id: string;
+
+  let staff: Staff & { id: string };
+  beforeAll(async () => {
+    process.env['token'] =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5YjM4ZDI3LTdmYTMtNGM4ZS05N2ViLWZkNjVmZGZkOTBlMCIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNjU3NzY5MzA1LCJleHAiOjE2NTgzNzQxMDV9.HjedvK_KFSGNNaDWCoiVyBWEkM5fhQCXR-X1m6iRsoQ';
+
+    staff = await api.createResource<Staff>('staff', staffBody);
+  });
+
+  afterAll(async () => {
+    await api.deleteResource<Staff>('staff', staff.id);
+  });
+
+  describe('auth', () => {
+    test('login', async () => {
+      const token = await api.auth.login(
+        staffBody.email,
+        staffBody.password,
+        'staff'
+      );
+      process.env['token'] = token;
+    });
+  });
 
   describe('resources', () => {
     test('createResource', async () => {
       const result = await api.createResource<Student>('student', studentBody);
-
       id = result.id;
       expect(result).toEqual(expect.objectContaining(studentBody));
     });
@@ -23,7 +51,6 @@ describe('clientSdk', () => {
         id,
         name: updateName,
       });
-
       studentBody.name = updateName;
 
       expect(result).toEqual(expect.objectContaining({ name: updateName }));
@@ -31,8 +58,18 @@ describe('clientSdk', () => {
 
     test('getResource', async () => {
       const result = await api.getResource<Student>('student', id);
-
       expect(result).toEqual(expect.objectContaining(studentBody));
+    });
+
+    test('listing', async () => {
+      const {
+        results,
+        pagination: { count },
+      } = await api.listing<Student>('student', {
+        filters: 'email:mahmoudelzoka@gmail.com',
+      });
+
+      expect(results).toHaveLength(count);
     });
 
     test('deleteResource', async () => {

@@ -39,7 +39,7 @@ const quiz = {
       type: 'object:answer',
     },
   },
-  sortable_fields: [],
+  searchable_attributes: [],
   search: {
     filters: [],
   },

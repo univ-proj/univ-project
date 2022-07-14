@@ -1,8 +1,11 @@
 import axios from './axios';
 
-type ExcludeMatchingProperties<T, V> = Pick< T, { [K in keyof T]-?: T[K] extends V ? never : K }[keyof T] >;
+type ExcludeMatchingProperties<T, V> = Pick<
+  T,
+  { [K in keyof T]-?: T[K] extends V ? never : K }[keyof T]
+>;
 
-type WithId<T> = T & { id: string; };
+type WithId<T> = T & { id: string };
 export type IModelsKeys =
   | 'answer'
   | 'class'
@@ -56,6 +59,27 @@ export function getResource<T>(
   return axios.get(`/${resourceName}/${id}`, {
     params: { expand: options?.expand },
   }) as Promise<WithId<T>>;
+}
+
+export function listing<T>(
+  resourceName: IModelsKeys,
+  listingOptions?: {
+    search?: string;
+    filters?: string;
+    page_number?: string;
+    sort?: string;
+    page_size?: string;
+  },
+  options?: IOptions
+) {
+  const params = new URLSearchParams(listingOptions);
+
+  return axios.get(`/${resourceName}?${params.toString()}`, {
+    params: { expand: options?.expand },
+  }) as Promise<{
+    results: WithId<T>[];
+    pagination: { count: number; page_number: number; page_size: number };
+  }>;
 }
 
 export function deleteResource<T>(

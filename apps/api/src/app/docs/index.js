@@ -62,9 +62,9 @@ export const init = (app) => {
       },
     ],
     security: {
-      BasicAuth: {
+      BearerAuth: {
         type: 'http',
-        scheme: 'basic',
+        scheme: 'bearer',
       },
     },
     filesPattern: [
