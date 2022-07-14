@@ -49,7 +49,7 @@ const staff = {
   },
   searchable_attributes: [],
   search: {
-    filters: [],
+    filters: ['email'],
   },
 };
 

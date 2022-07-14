@@ -10,7 +10,10 @@ jest.mock('@/config', () => {
 import errors from '@/errors';
 import * as config from '@/config';
 import persistence_lib from '@/persistance';
+import queue_lib from '@/queue';
 import * as _ from 'lodash';
+import '@/persistance/hooks/async-logic';
+import '@/persistance/hooks/pre-logic';
 import validators from '../validators';
 import id_generator from '../utils/id_generator';
 
@@ -75,7 +78,8 @@ describe('persistence', () => {
 
   beforeAll(async () => {
     // init_persistence
-    persistence = await persistence_lib(config, model_configs);
+    const queue = await queue_lib(config);
+    persistence = await persistence_lib(config, model_configs, queue);
   });
 
   afterAll(async () => {

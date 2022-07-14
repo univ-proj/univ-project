@@ -10,6 +10,8 @@ import error_handler from '@/middlewares/error_handler';
 import controllers from '@/controllers';
 import * as bodyParser from 'body-parser';
 import '@/components';
+import '@/persistance/hooks/pre-logic';
+import '@/persistance/hooks/async-logic';
 
 const app = express();
 

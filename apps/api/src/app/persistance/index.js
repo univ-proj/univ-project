@@ -23,9 +23,10 @@ const database_drivers = {
  *
  * @param {import('@/config').IConfig} config
  * @param {{[x: string]: IModel}} models
+ * @param {import('@/queue').IEventQueueDriver} queue
  * @returns {IPersistanceDriver}
  */
-export default function create_client(config, models) {
+export default function create_client(config, models, queue) {
   logger.info('initializing persistence');
 
   logger.info('initializing database driver');
@@ -106,13 +107,24 @@ export default function create_client(config, models) {
       logger.info('valid request body');
 
       const id = id_generator();
-      // TODO: add Pub/Sub (db hooks)
+      const payload = { model_name, id, ...sanitized_body };
+
+      // trigger rules and notifications
+      const topic = `POST ${model_name}`;
+      logger.info('initializing publisher', { topic });
+      const publisher = queue.publish_event(topic, options.user);
+
+      logger.info('calling pre-logic');
+      await publisher.pre(null, body, { payload });
 
       logger.info(`persist object on the db`);
-      const created_object = await db.create_object(
-        { model_name, id, ...sanitized_body },
-        options
-      );
+      const created_object = await db.create_object(payload, options);
+
+      logger.info('calling post-logic');
+      await publisher.post(null, created_object);
+
+      logger.info('calling async-logic');
+      await publisher.async(null, created_object);
 
       return created_object;
     },
@@ -142,7 +154,19 @@ export default function create_client(config, models) {
       logger.info('valid request body');
 
       // will fetch object and throw if not found
-      await this.get_object({ model_name, id });
+      const previous = await this.get_object({ model_name, id });
+
+      const payload = { model_name, id, ...sanitized_body };
+
+      // trigger rules and notifications
+      const topic = `PATCH ${model_name}`;
+      logger.info('initializing publisher', { topic });
+
+      const publisher = queue.publish_event(topic, options.user);
+
+      logger.info('calling pre-logic');
+
+      await publisher.pre(previous, payload, { payload });
 
       const parsed_expand = parse_expand_query(
         models,
@@ -150,12 +174,16 @@ export default function create_client(config, models) {
         options.expand
       );
 
-      // TODO: add Pub/Sub (db hooks)
       logger.info('persist the updates on db layer');
-      const updated_object = await db.update_object(
-        { model_name, id, ...sanitized_body },
-        { expand: parsed_expand }
-      );
+      const updated_object = await db.update_object(payload, {
+        expand: parsed_expand,
+      });
+
+      logger.info('calling post-logic');
+      await publisher.post(previous, updated_object);
+
+      logger.info('calling async-logic');
+      await publisher.async(previous, updated_object);
 
       return updated_object;
     },
@@ -166,7 +194,15 @@ export default function create_client(config, models) {
 
       logger.info('check that object exists');
       // will fetch object and throw if not found
-      await this.get_object({ model_name, id });
+      const previous = await this.get_object({ model_name, id });
+
+      // trigger rules and notifications
+      const topic = `DELETE ${model_name}`;
+      logger.info('initializing publisher', { topic });
+      const publisher = queue.publish_event(topic, options.user);
+
+      logger.info('calling pre-logic');
+      await publisher.pre(previous, { model_name, id });
 
       logger.info('delete object from db layer');
       const parsed_expand = parse_expand_query(
@@ -179,6 +215,12 @@ export default function create_client(config, models) {
         { model_name, id },
         { expand: parsed_expand }
       );
+
+      logger.info('calling post-logic');
+      await publisher.post(previous, { model_name, id });
+
+      logger.info('calling async-logic');
+      await publisher.async(previous, { model_name, id });
 
       return deleted_object;
     },
@@ -222,14 +264,41 @@ export default function create_client(config, models) {
         `persistance.create_relation "${relation.name}" for ${relation.src_model} model with id ${relation.src_id}`
       );
 
-      return db.create_relation(relation, options);
+      // trigger rules and notifications
+      const topic = `POST ${relation.src_model}/${relation.name}`;
+      logger.info('initializing publisher', { topic });
+
+      const publisher = queue.publish_event(topic, options.user);
+
+      await publisher.pre(null, relation);
+
+      const result = await db.create_relation(relation, options);
+
+      await publisher.async(null, relation);
+
+      await publisher.post(null, relation);
+
+      return result;
     },
     async delete_relation(relation, options) {
       logger.info(
         `persistance.delete_relation "${relation.name}" for ${relation.src_model} model with id ${relation.src_id}`
       );
 
-      return db.delete_relation(relation, options);
+      // trigger rules and notifications
+      const topic = `DELETE ${relation.src_model}/${relation.name}`;
+      logger.info('initializing publisher', { topic });
+
+      const publisher = queue.publish_event(topic, options.user);
+
+      await publisher.pre(null, relation);
+
+      const result = await db.delete_relation(relation, options);
+
+      await publisher.async(null, relation);
+      await publisher.post(null, relation);
+
+      return result;
     },
     async relation_exists(relation, options) {
       logger.info(

@@ -40,7 +40,6 @@ model_router.get('/:model_name/', async (req, res) => {
     }
   );
 
-  console.log(req.user);
   res.json(fetched_object);
 });
 
