@@ -18,10 +18,16 @@ export default function convert_filter_to_db_query(filters: any[]) {
       });
     });
 
-    or_filters.push({ $and: and_filters });
+    if (and_filters.length > 0) {
+      or_filters.push({ $and: and_filters });
+    }
   });
 
-  return {
-    $or: or_filters,
-  };
+  if (or_filters.length > 0) {
+    return {
+      $or: or_filters,
+    };
+  }
+
+  return {};
 }

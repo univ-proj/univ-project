@@ -187,12 +187,18 @@ export default function create_client(config, models) {
       const model_config = get_model_config(model_name);
 
       // extract filters from query
-      const filters = extract_filters(listing_options.filter);
+      const filters = extract_filters(listing_options.filters);
 
       // filter out undefined filters
       const valid_filters = strip_invalid_filters(filters, model_config);
 
-      logger.info('delete object from db layer');
+      if (filters.length !== valid_filters.length) {
+        throw errors.invalid_filter(
+          _.differenceBy(filters, valid_filters, _.isEqual)
+        );
+      }
+
+      logger.info('listing model data');
       const parsed_expand = parse_expand_query(
         models,
         model_name,

@@ -12,12 +12,9 @@ import system from '@/authentication/driver/system';
  * @callback IRegisterUser
  * @returns {Promise<void>}
  *
- * @typedef ILoginResponse
- * @property {string} token
- *
  * @callback ILoginUser
- * @param {{ username?: string, password?: string, role?:string }} params
- * @returns {Promise<ILoginResponse>}
+ * @param {{ username?: string, password?: string, role?:'student'|'staff' }} params
+ * @returns {Promise<string>}
  *
  * @callback ILoginAsGuest
  * @returns {Promise<ILoginResponse>}

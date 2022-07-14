@@ -12,9 +12,10 @@ const model_router = express.Router();
  * @tags Model
  * @description List a resource
  * @summary listing
+ * @security BearerAuth
  * @param {string} model_name.path.required - enum:answer,class,file,level,quiz,student,assignment,code_description,group,section,attendance,course,program,staff
  * @param {string} search.query - search text to search the entities
- * @param {string} filter.query - key value pairs to filter by
+ * @param {string} filters.query - key value pairs to filter by
  * @param {number} page_number.query - required page number
  * @param {number} page_size.query - required page size
  * @param {string} sort.query - <attribute_name> for asc & -<attribute_name> for desc
@@ -23,13 +24,13 @@ const model_router = express.Router();
  */
 model_router.get('/:model_name/', async (req, res) => {
   const { model_name } = req.params;
-  const { search, filter, page_number, sort, page_size, expand } = req.query;
+  const { search, filters, page_number, sort, page_size, expand } = req.query;
 
   const fetched_object = await persistance.listing(
     model_name,
     {
       search,
-      filter,
+      filters,
       page_number,
       sort,
       page_size,
@@ -39,6 +40,7 @@ model_router.get('/:model_name/', async (req, res) => {
     }
   );
 
+  console.log(req.user);
   res.json(fetched_object);
 });
 
@@ -47,6 +49,7 @@ model_router.get('/:model_name/', async (req, res) => {
  * @tags Model
  * @description Find specific resource by specifying the model_name and the id
  * @summary find modal by id
+ * @security BearerAuth
  * @param {string} model_name.path.required - enum:answer,class,file,level,quiz,student,assignment,code_description,group,section,attendance,course,program,staff
  * @param {string} id.path.required - resource id
  * @param {string} expand.query - expand
@@ -70,6 +73,7 @@ model_router.get('/:model_name/:id', async (req, res) => {
  * @tags Model
  * @description create new resource by specifying the model_name and the id
  * @summary create new resource
+ * @security BearerAuth
  * @param {string} model_name.path.required - enum:answer,class,file,level,quiz,student,assignment,code_description,group,section,attendance,course,program,staff
  * @param {ResponseModal} request.body.required - create object body - application/json
  * @return {ResponseModal} 201 - success response
@@ -93,6 +97,7 @@ model_router.post('/:model_name', async (req, res) => {
  * @tags Model
  * @description update resource of the specified id
  * @summary Patch Update resource
+ * @security BearerAuth
  * @param {string} model_name.path.required - enum:answer,class,file,level,quiz,student,assignment,code_description,group,section,attendance,course,program,staff
  * @param {string} id.path.required - resource id
  * @param {ResponseModal} request.body.required - update object body - application/json
@@ -121,6 +126,7 @@ model_router.patch('/:model_name/:id', async (req, res) => {
  * @tags Model
  * @description delete the resource of the specified id
  * @summary Delete resource
+ * @security BearerAuth
  * @param {string} model_name.path.required - enum:answer,class,file,level,quiz,student,assignment,code_description,group,section,attendance,course,program,staff
  * @param {string} id.path.required - resource id
  * @param {string} expand.query - expand

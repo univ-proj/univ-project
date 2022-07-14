@@ -168,13 +168,19 @@ export default function create_client(
       return rename_id(deleted_object);
     },
     async listing(
-      model_name,
+      model_name: IModelsKeys,
       {
         search,
         filters,
         sort,
         page_number = 1,
         page_size = config.default_page_size,
+      }: {
+        search: string;
+        filters: string | any[];
+        sort: string;
+        page_number: number;
+        page_size: number;
       },
       options
     ) {
@@ -188,17 +194,19 @@ export default function create_client(
         filters,
       });
 
+      const query = {
+        ...convert_filter_to_db_query(filters as any),
+      };
+
       const search_query = model_config.searchable_attributes.map((attr) => ({
         [attr]: {
           $regex: new RegExp('^(.*)?' + _.escapeRegExp(search) + '(.*)?', 'i'),
         },
       }));
 
-      console.log(convert_filter_to_db_query(filters));
-      const query = {
-        $and: search_query,
-        ...convert_filter_to_db_query(filters),
-      };
+      if (search && search_query.length) {
+        query['$or'] = search_query;
+      }
 
       page_size = Number(page_size) || 10;
       const query_options = {
@@ -219,7 +227,7 @@ export default function create_client(
 
       return {
         pagination: { count, page_number, page_size },
-        results,
+        results: results.map((el) => rename_id(el)),
       };
     },
 
