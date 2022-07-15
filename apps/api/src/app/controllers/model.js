@@ -37,6 +37,7 @@ model_router.get('/:model_name/', async (req, res) => {
     },
     {
       expand,
+      user: req.user,
     }
   );
 
@@ -61,6 +62,7 @@ model_router.get('/:model_name/:id', async (req, res) => {
     { model_name, id },
     {
       expand: req.query.expand,
+      user: req.user,
     }
   );
 
@@ -85,7 +87,9 @@ model_router.post('/:model_name', async (req, res) => {
       model_name,
       ...req.body,
     },
-    {}
+    {
+      user: req.user,
+    }
   );
 
   res.status(201).json(created_object);
@@ -114,6 +118,7 @@ model_router.patch('/:model_name/:id', async (req, res) => {
     },
     {
       expand: req.query.expand,
+      user: req.user,
     }
   );
 
@@ -138,6 +143,7 @@ model_router.delete('/:model_name/:id', async (req, res) => {
     { model_name, id },
     {
       expand: req.query.expand,
+      user: req.user,
     }
   );
 

@@ -28,6 +28,7 @@ relations_router.get('/:src_model/:src_id/:relation_name', async (req, res) => {
     },
     {
       expand: req.query.expand,
+      user: req.user,
     }
   );
   res.json(result);
@@ -57,7 +58,9 @@ relations_router.post(
         src_model,
         src_id,
       },
-      {}
+      {
+        user: req.user,
+      }
     );
 
     res.status(200).end();
@@ -88,7 +91,9 @@ relations_router.delete(
         src_model,
         src_id,
       },
-      {}
+      {
+        user: req.user,
+      }
     );
 
     res.status(200).end();
