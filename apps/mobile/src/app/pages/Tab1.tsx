@@ -10,6 +10,7 @@ import scheduleIcon from '../../assets/icon/ScheduleIcon.svg';
 import assignmentIcon from '../../assets/icon/AssignmentsIcon.svg';
 import gradesIcon from '../../assets/icon/GradesIcon.svg';
 import chatIcon from '../../assets/icon/ChatIcon.svg';
+import { Link } from 'react-router-dom';
 
 const Tab1: React.FC = () => {
   return (
@@ -50,10 +51,12 @@ const Tab1: React.FC = () => {
         />
         <div className="cards">
           <div className="card">
-            <div className="card_content">
-              <img alt="fff" src={scheduleIcon} />
-              <div className="card_text">Schedule</div>
-            </div>
+            <Link style={{ textDecoration: 'none' }} to="/schedulePage">
+              <div className="card_content">
+                <img alt="fff" src={scheduleIcon} />
+                <div className="card_text">Schedule</div>
+              </div>
+            </Link>
           </div>
 
           <div className="sub_cards">
