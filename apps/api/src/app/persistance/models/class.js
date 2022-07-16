@@ -57,12 +57,6 @@ const class_schema = {
     attendance: {
       type: 'object:attendance',
     },
-    assignments: {
-      type: 'object:assignment',
-    },
-    quizzes: {
-      type: 'object:quiz',
-    },
     files: {
       type: 'object:file',
     },

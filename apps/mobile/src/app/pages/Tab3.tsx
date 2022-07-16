@@ -24,20 +24,6 @@ const Tab3: React.FC = () => {
           prof_img="sdsdasds"
           notification="Lorem ipsum dolor sit amet, cumwwdolo mahmoud selem mahmoud selem"
         />
-
-        <Notification
-          update={false}
-          prof_name="Rasha Orban"
-          prof_img="sdsdasds"
-          notification="Lorem ipsum dolor sit amet, cumwwdolo mahmoud selem mahmoud selem"
-        />
-
-        <Notification
-          update={false}
-          prof_name="Rasha Orban"
-          prof_img="sdsdasds"
-          notification="Lorem ipsum dolor sit amet, cumwwdolo mahmoud selem mahmoud selem"
-        />
       </div>
     </div>
   );

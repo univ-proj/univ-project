@@ -5,18 +5,18 @@ import VisibilityOffIcon from '../../icons/visibility-off-icon/visibility-off-ic
 import VisibilityOnIcon from '../../icons/visibility-on-icon/visibility-on-icon';
 /* eslint-disable-next-line */
 export interface InputsProps {
-  focused: boolean;
-  color: 'error' | 'primary';
-  label: 'Email' | 'Password';
-  disabled: boolean;
-  error: boolean;
-  required: boolean;
-  helperText: string;
-  placeholder: string;
-  type: 'text' | 'password';
   value: string;
   onChange: any;
   name: string;
+  focused?: boolean;
+  color?: 'error' | 'primary';
+  label?: string;
+  disabled?: boolean;
+  error?: boolean;
+  required?: boolean;
+  helperText?: string;
+  placeholder?: string;
+  type: string;
 }
 
 export function Inputs({
@@ -39,14 +39,14 @@ export function Inputs({
     setshowPassword(!showPassword);
   };
 
-  const ShowIcon = type === 'password';
+  const showIcon = type === 'password';
   return (
     <TextField
       name={name}
       value={value}
       onChange={onChange}
       placeholder={placeholder}
-      type={showPassword ? 'text' : 'password'}
+      type={type === 'text' || showPassword ? 'text' : 'password'}
       label={label}
       focused={focused}
       color={color}
@@ -56,7 +56,7 @@ export function Inputs({
       disabled={disabled}
       required={required}
       InputProps={
-        ShowIcon
+        showIcon
           ? {
               endAdornment: (
                 <InputAdornment position="end">

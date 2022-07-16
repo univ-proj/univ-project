@@ -26,6 +26,5 @@ export * from './lib/components/lectureType-card/lectureType-card';
 export * from './lib/components/notification/notification';
 export * from './lib/components/attendence-card/attendence-card';
 export * from './lib/components/inputs/inputs';
-
 // example
 // example 2

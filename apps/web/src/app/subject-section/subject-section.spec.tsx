@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import { Inputs } from './inputs';
+import SubjectSection from './subject-section';
 
-describe('Input', () => {
+describe('SubjectSection', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Inputs />);
+    const { baseElement } = render(<SubjectSection />);
     expect(baseElement).toBeTruthy();
   });
 });
