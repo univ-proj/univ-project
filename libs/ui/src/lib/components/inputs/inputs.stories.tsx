@@ -1,16 +1,16 @@
 import { ThemeProvider } from '@emotion/react';
 import { Story, Meta } from '@storybook/react';
-import { Inputs, InputsProps } from './inputs';
+import { Input, InputProps } from './inputs';
 import { theme } from '../../theme';
 
 export default {
-  component: Inputs,
-  title: 'Inputs',
+  component: Input,
+  title: 'Input',
 } as Meta;
 
-const Template: Story<InputsProps> = (args) => (
+const Template: Story<InputProps> = (args) => (
   <ThemeProvider theme={theme}>
-    <Inputs {...args} />
+    <Input {...args} />
   </ThemeProvider>
 );
 

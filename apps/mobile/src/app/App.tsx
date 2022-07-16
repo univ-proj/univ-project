@@ -16,6 +16,8 @@ import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 import SubjectPage from './pages/subjectPage/subjectPage';
 import { ScanIcon } from '@univ-project/ui';
+import Tab4 from './pages/Tab4';
+import SignInPage from './pages/sign-in/signIn';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -38,26 +40,26 @@ import './theme/variables.css';
 import LecturePage from './pages/lecturePage/lecturePage';
 import ScanTab from './pages/ScanTab';
 
-import Tab4 from './pages/Tab4';
-
 const App: React.FC = () => {
   return (
     <IonApp>
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route path="/tab1" component={Tab1} exact={true} />
-            <Route path="/tab2" component={Tab2} exact={true} />
+            <Route path="/" component={SignInPage} exact />
+            <Route path="/tab1" component={Tab1} />
+            <Route path="/tab2" component={Tab2} />
             <Route path="/tab3" component={Tab3} />
             <Route path="/tab4" component={Tab4} />
             <Route path="/subjectPage" component={SubjectPage} />
             <Route path="/lecturePage" component={LecturePage} />
-            <Route path="/tab4" component={ScanTab} />
-            <Route
+            <Route path="/scan" component={ScanTab} />
+            {/* <Route */}
+            {/* <Route
               path="/"
               render={() => <Redirect to="/tab1" />}
               exact={true}
-            />
+            /> */}
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
             <IonTabButton tab="Home" href="/tab1">
@@ -77,11 +79,11 @@ const App: React.FC = () => {
               <IonIcon icon={square} />
               <IonLabel>Profile</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="tab4" href="/tab4">
+            <IonTabButton tab="scan" href="/scan">
               {/* <IonIcon> */}
               <ScanIcon type="outlined" />
               {/* </IonIcon> */}
-              <IonLabel>Tab 4</IonLabel>
+              <IonLabel>Scan</IonLabel>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
