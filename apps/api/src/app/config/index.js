@@ -16,6 +16,7 @@ import * as dotenv from 'dotenv';
  * @property {string} expands_options_default_limit Expands options default limit
  * @property {"asc"|"desc"} expands_options_default_sort_type Expands options default sort type
  * @property {number} default_page_size default page size
+ * @property {number} pid_max_ram_usage max ram usage
 
  */
 
