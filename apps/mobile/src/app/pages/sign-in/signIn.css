@@ -1,0 +1,60 @@
+.signIn-page {
+  padding-top: 44px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.signIn_text {
+  margin-top: 40px;
+  font-size: 32px;
+  font-weight: 800;
+  color: #6247aa;
+  text-align: center;
+}
+
+.card_details {
+  font-size: 12px;
+  font-weight: 600;
+  color: #8372b4;
+  margin-top: 4px;
+  text-align: center;
+}
+
+.inputs_container {
+  margin-top: 55.5px;
+}
+
+.passwordInput_container {
+  margin-top: 32px;
+}
+
+.forget_password {
+  font-size: 14px;
+  font-weight: 600;
+  text-align: right;
+  margin-top: 16px;
+  color: #6247aa;
+}
+.button_container {
+  margin-top: 47px;
+}
+
+.or {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8372b4;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.scan_input_conatiner {
+  margin-top: 16px;
+}
+
+.scan_QR {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8372b4;
+  margin-top: 16px;
+  text-align: center;
+}
