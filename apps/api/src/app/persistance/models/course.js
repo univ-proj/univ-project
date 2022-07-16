@@ -29,6 +29,12 @@ const course = {
     classes: {
       type: 'object:class',
     },
+    assignments: {
+      type: 'object:assignment',
+    },
+    quizzes: {
+      type: 'object:quiz',
+    },
   },
   searchable_attributes: [],
   search: {

@@ -11,9 +11,9 @@ import random_entity_body_generator from './utils/random_entity_body_generator';
 export default async function testing_data(persistence) {
   logger.info('seeders.testing_data');
 
-  // if (process.argv[2] !== 'test_data') {
-  //   return;
-  // }
+  if (process.argv[2] !== 'test_data') {
+    return;
+  }
 
   await persistence.truncate();
 
