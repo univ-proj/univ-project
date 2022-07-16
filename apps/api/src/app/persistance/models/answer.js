@@ -24,6 +24,9 @@ const answer = {
     code: {
       type: 'string',
     },
+    student: {
+      type: 'object:student',
+    },
   },
   relations: {},
   searchable_attributes: [],
