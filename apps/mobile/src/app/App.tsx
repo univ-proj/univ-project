@@ -39,6 +39,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import LecturePage from './pages/lecturePage/lecturePage';
 import ScanTab from './pages/ScanTab';
+import SchedulePage from './pages/schedulePage/schedulePage';
 
 const App: React.FC = () => {
   return (
@@ -54,6 +55,7 @@ const App: React.FC = () => {
             <Route path="/subjectPage" component={SubjectPage} />
             <Route path="/lecturePage" component={LecturePage} />
             <Route path="/scan" component={ScanTab} />
+            <Route path="/schedulePage" component={SchedulePage} />
             {/* <Route */}
             {/* <Route
               path="/"
