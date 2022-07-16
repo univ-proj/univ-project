@@ -20,10 +20,12 @@ export * from './lib/components/lecture-card/lecture-card';
 export * from './lib/components/buttons/button/button';
 export * from './lib/ui';
 export * from './lib/theme';
-export * from './lib/components/subject-card/subject-card'
+export * from './lib/components/subject-card/subject-card';
 export * from './lib/components/schedule-card/schedule-card';
 export * from './lib/components/lectureType-card/lectureType-card';
-export * from './lib/components/notification/notification'
-export * from './lib/components/attendence-card/attendence-card'
+export * from './lib/components/notification/notification';
+export * from './lib/components/attendence-card/attendence-card';
+export * from './lib/components/inputs/inputs';
+
 // example
 // example 2

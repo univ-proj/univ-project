@@ -1,6 +1,6 @@
 import { IconButton, InputAdornment } from '@mui/material';
 import TextField from '@mui/material/TextField';
-import { SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import VisibilityOffIcon from '../../icons/visibility-off-icon/visibility-off-icon';
 import VisibilityOnIcon from '../../icons/visibility-on-icon/visibility-on-icon';
 /* eslint-disable-next-line */
@@ -13,7 +13,10 @@ export interface InputsProps {
   required: boolean;
   helperText: string;
   placeholder: string;
-  type: string;
+  type: 'text' | 'password';
+  value: string;
+  onChange: any;
+  name: string;
 }
 
 export function Inputs({
@@ -26,13 +29,11 @@ export function Inputs({
   required,
   label,
   type,
+  value,
+  onChange,
+  name,
 }: InputsProps) {
-  const [value, setValue] = useState('');
   const [showPassword, setshowPassword] = useState(false);
-
-  const handleChange = (e: { target: { value: SetStateAction<string> } }) => {
-    setValue(e.target.value);
-  };
 
   const handleClickShowPassword = () => {
     setshowPassword(!showPassword);
@@ -41,11 +42,12 @@ export function Inputs({
   const ShowIcon = type === 'password';
   return (
     <TextField
+      name={name}
+      value={value}
+      onChange={onChange}
       placeholder={placeholder}
       type={showPassword ? 'text' : 'password'}
       label={label}
-      value={value}
-      onChange={handleChange}
       focused={focused}
       color={color}
       variant="outlined"
