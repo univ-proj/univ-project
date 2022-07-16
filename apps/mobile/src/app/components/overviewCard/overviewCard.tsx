@@ -11,7 +11,7 @@ export const OverviewCard = (props: OverViewCardProps) => {
     <div className="overviewCard">
       <div className="number_text_container">
         <div className="number">{props.number}</div>
-        <div className="text">{props.text}</div>
+        <div className="overview_text">{props.text}</div>
       </div>
     </div>
   );
