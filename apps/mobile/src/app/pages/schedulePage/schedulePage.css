@@ -1,0 +1,81 @@
+.schedule_page {
+  padding-top: 44px;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+}
+
+.schedule_text {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333333;
+  margin-top: 40px;
+}
+
+.semester_midterm_final_conatiner {
+  margin-top: 16px;
+  display: inline-flex;
+}
+
+.semester_box {
+  width: 120px;
+  height: 40px;
+  border: 1px solid #6247aa;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6247aa;
+  background-color: #ece6f7;
+  position: relative;
+}
+.box_content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.midterm_box {
+  width: 120px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #8372b4;
+  border: 1px solid #8372b4;
+  position: relative;
+}
+
+.final_box {
+  width: 120px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #8372b4;
+  border: 1px solid #8372b4;
+  position: relative;
+}
+
+.weekDays_container {
+  margin-top: 40px;
+  display: inline-flex;
+  gap: 8px;
+}
+
+.Day_box {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  color: #8372b4;
+  border: 1px solid #8372b4;
+  position: relative;
+}
+.day_text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.scheduleCards_conatiner {
+  margin-top: 16px;
+}
