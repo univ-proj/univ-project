@@ -1,10 +1,15 @@
-import { Button, Input } from '@univ-project/ui';
-import React, { useState } from 'react';
+import { useContext, useState } from 'react';
+
+import { Button, Inputs } from '@univ-project/ui';
+import * as api from '@univ-project/client-sdk';
 import logo from '../../../assets/Logo2.svg';
 import './signIn.css';
+import { UserContext } from '../../context/userContext';
+
 const SignInPage = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const { setToken, setUser } = useContext(UserContext);
 
   function handleInputChange(e) {
     setEmail(e.target.value);
@@ -12,6 +17,13 @@ const SignInPage = () => {
 
   function handlePasswordInput(e) {
     setPassword(e.target.value);
+  }
+
+  async function handleLogin() {
+    console.log({ email, password });
+    const result = await api.auth.login(email, password, 'student');
+    setToken(result.token);
+    setUser(result.user);
   }
 
   return (
@@ -23,17 +35,17 @@ const SignInPage = () => {
       <div className="card_details">Use the information on your ID card</div>
 
       <div className="inputs_container">
-        <Input handleChange={handleInputChange} type="email" />
+        <Inputs onChange={handleInputChange} type="email" />
 
         <div className="passwordInput_container">
-          <Input handleChange={handlePasswordInput} type="password" />
+          <Inputs onChange={handlePasswordInput} type="password" />
         </div>
       </div>
 
       <div className="forget_password">Forgot your password?</div>
 
       <div className="button_container">
-        <Button>Log in</Button>
+        <Button onClick={handleLogin}>Log in</Button>
       </div>
 
       <div className="or">OR</div>

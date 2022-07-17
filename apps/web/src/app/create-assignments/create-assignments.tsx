@@ -69,8 +69,10 @@ export function CreateAssignments(props: CreateAssignmentsProps) {
 
     const assignment = await api.createResource<Assignment>('assignment', {
       name: assignmentName,
+      // @ts-ignore
       course: '', // TODO: add course id
       type: 'code',
+      // @ts-ignore
       code_description: codeDescription.id,
     });
 

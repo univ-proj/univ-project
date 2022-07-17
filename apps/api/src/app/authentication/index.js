@@ -14,7 +14,7 @@ import system from '@/authentication/driver/system';
  *
  * @callback ILoginUser
  * @param {{ username?: string, password?: string, role?:'student'|'staff' }} params
- * @returns {Promise<string>}
+ * @returns {Promise<{token: string, user: object, role: 'student'|'staff'}>}
  *
  * @callback ILoginAsGuest
  * @returns {Promise<ILoginResponse>}

@@ -2,11 +2,11 @@ import styles from './schedule-card.module.css';
 import { TimerIcon, LocationIcon, ProfileIcon } from '@univ-project/ui';
 /* eslint-disable-next-line */
 export interface ScheduleCardProps {
-  status: string;
-  subject_name: string;
-  time: string;
-  location: string;
-  prof_name: string;
+  status?: string;
+  subject_name?: string;
+  time?: string;
+  location?: string;
+  prof_name?: string;
 }
 
 export function ScheduleCard(props: ScheduleCardProps) {
