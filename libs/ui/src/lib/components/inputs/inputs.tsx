@@ -3,6 +3,8 @@ import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 import VisibilityOffIcon from '../../icons/visibility-off-icon/visibility-off-icon';
 import VisibilityOnIcon from '../../icons/visibility-on-icon/visibility-on-icon';
+import styles from './inputs.module.css';
+
 /* eslint-disable-next-line */
 export interface InputsProps {
   value: string;
@@ -40,15 +42,21 @@ export function Inputs({
   };
 
   const showIcon = type === 'password';
+
+  if (type === 'password' && showPassword) {
+    type = 'text';
+  }
+
   return (
     <TextField
       name={name}
       value={value}
       onChange={onChange}
       placeholder={placeholder}
-      type={type === 'text' || showPassword ? 'text' : 'password'}
+      type={type}
       label={label}
       focused={focused}
+      className={styles['input']}
       color={color}
       variant="outlined"
       error={error}
