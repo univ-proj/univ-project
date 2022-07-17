@@ -13,7 +13,10 @@ export default function create_client(config, persistance) {
   return {
     login: async (email, pass = '', role) => {
       // get email and password
-      const { results, count } = await persistance.listing(role, {
+      const {
+        results,
+        pagination: { count },
+      } = await persistance.listing(role, {
         filters: `email:${email}`,
       });
 
@@ -30,7 +33,7 @@ export default function create_client(config, persistance) {
       }
 
       // generate token
-      return token.sign({ id: user.id, role });
+      return { token: token.sign({ id: user.id, role }), user, role };
     },
     // register: async () => {
 

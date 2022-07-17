@@ -1,3 +1,4 @@
+import { Staff, Student } from '@univ-project/typedefs';
 import axios from './axios';
 
 export function login(
@@ -9,5 +10,8 @@ export function login(
     email,
     password,
     role,
-  }) as Promise<string>;
+  }) as Promise<
+    | { token: string; user: Student; role: 'student' }
+    | { token: string; user: Staff; role: 'staff' }
+  >;
 }
