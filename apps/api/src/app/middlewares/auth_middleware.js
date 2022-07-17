@@ -1,4 +1,4 @@
-import { system_auth } from '@/components';
+import { persistance, system_auth } from '@/components';
 import errors from '@/errors';
 import logger from '@/logger';
 
@@ -22,14 +22,22 @@ export default async function auth_middleware(req, res, next) {
 
   const resolved_token = await system_auth.validate_token(token);
 
-  // TODO: find user and check if exists
+  let user;
+  try {
+    user = await persistance.get_object({
+      model_name: resolved_token.role,
+      id: resolved_token.id,
+    });
+  } catch (e) {
+    throw errors.invalid_token();
+  }
 
   if (!resolved_token) {
     throw errors.invalid_token();
   }
 
   req.user = {
-    id: resolved_token.id,
+    id: user.id,
     role: resolved_token.role,
   };
 

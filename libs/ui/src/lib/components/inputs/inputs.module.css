@@ -9,6 +9,9 @@
   background-color: #ece6f7;
   border: 1px solid #6247aa;
 }
+.input > div {
+  height: 100%;
+}
 
 .input:focus {
   outline: none;

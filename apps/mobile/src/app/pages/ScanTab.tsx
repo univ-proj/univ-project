@@ -25,7 +25,10 @@ const ScanTab: React.FC = () => {
           setLoading(true);
           await api.createResource<Attendance>('attendance', {
             attended: true,
+            // TODO: populate student on the backend
+            // @ts-ignore
             student: '00faf229-2c95-45b5-bab0-6b3959647436',
+            // @ts-ignore
             class: '000edfcc-cfc5-4854-90bd-0e7cc37735c6',
           });
 
