@@ -22,6 +22,8 @@ export default async function auth_middleware(req, res, next) {
 
   const resolved_token = await system_auth.validate_token(token);
 
+  // TODO: find user and check if exists
+
   if (!resolved_token) {
     throw errors.invalid_token();
   }

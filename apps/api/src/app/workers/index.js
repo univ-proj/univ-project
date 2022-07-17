@@ -2,7 +2,7 @@ import * as path from 'path';
 
 import logger from '@/logger';
 import { Piscina } from 'piscina';
-import code_runner from '@/workers/code_runner';
+import * as code_runner from '@/workers/code_runner';
 
 /**
  *

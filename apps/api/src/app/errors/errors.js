@@ -20,3 +20,5 @@ export const user_does_not_exist = create_error(401, 'user_does_not_exist');
 export const invalid_credentials = create_error(401, 'invalid_credentials');
 export const expired_token = create_error(401, 'expired_token');
 export const unauthorized = create_error(401, 'unauthorized');
+
+export const engine_not_supported = create_error(400, 'engine_not_supported');

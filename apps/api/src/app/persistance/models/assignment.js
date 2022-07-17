@@ -20,8 +20,8 @@ const assignment = {
     name: {
       type: 'string',
     },
-    class: {
-      type: 'object:class',
+    course: {
+      type: 'object:course',
     },
     type: {
       type: 'string',

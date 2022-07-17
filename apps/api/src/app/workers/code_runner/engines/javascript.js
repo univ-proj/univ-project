@@ -1,3 +1,4 @@
+import logger from '@/logger';
 import * as child_process from 'child_process';
 import * as util from 'util';
 // import ram_monitor from '../utils/ram_monitor';
@@ -12,9 +13,10 @@ export async function run(code) {
 
     const result = await subprocess;
 
-    return result.stdout;
+    return result.stdout || result.stdout;
     // clearInterval(ram_monitor_interval);
   } catch (e) {
+    logger.error('error during parsing javascript code');
     return null;
   }
 }
