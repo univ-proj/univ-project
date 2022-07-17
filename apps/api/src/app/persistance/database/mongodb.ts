@@ -188,7 +188,7 @@ export default function create_client(
       const model_config = models_config[model_name];
 
       const Model = get_modal_by_modal_name(model_name);
-      console.log(filters);
+
       logger.info(`start listing ${Model.name} with filters`, {
         search,
         filters,

@@ -1,6 +1,7 @@
 import auth_middleware from '@/middlewares/auth_middleware';
 import * as express from 'express';
 import auth_router from './auth';
+import code_router from './code';
 import model_router from './model';
 import relations_router from './relations';
 
@@ -21,5 +22,6 @@ router.use('/auth', auth_router);
 router.use(auth_middleware);
 router.use(model_router);
 router.use(relations_router);
+router.use('/code', code_router);
 
 export default router;
