@@ -22,6 +22,14 @@ instance.interceptors.request.use(function (config) {
   // in browser env
   if (host.browser) {
     token = localStorage.getItem('Token');
+
+    if (token) {
+      try {
+        token = JSON.parse(token);
+      } catch (e) {
+        //
+      }
+    }
   }
 
   if (config.headers) {

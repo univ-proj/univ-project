@@ -12,11 +12,16 @@
  * @returns {IResumeDriver}
  */
 
+import errors from '@/errors';
 import logger from '@/logger';
 import * as engines from './engines';
 
-export default async function run({ code, env }) {
+export async function run({ code, env }) {
   logger.info(`run code on env ${env}`);
+
+  if (!engines[env]) {
+    throw errors.engine_not_supported({ engine_name: env });
+  }
 
   return await engines[env].run(code);
 }

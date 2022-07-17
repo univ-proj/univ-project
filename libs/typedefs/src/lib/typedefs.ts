@@ -6,6 +6,7 @@ export interface Answer {
   file: File;
   code: string;
   student: Student;
+  assignment: Assignment;
 }
 export interface Class {
   name: string;
@@ -65,10 +66,10 @@ export interface Student {
 
 export interface Assignment {
   name: string;
-  course: Course | string;
+  course: Course;
   type: AssignmentTypes;
-  file: File | string;
-  code_description: CodeDescription | string;
+  file: File;
+  code_description: CodeDescription;
 
   // relations
   answers: Answer[];
@@ -101,8 +102,8 @@ export interface Section {
 
 export interface Attendance {
   attended: boolean;
-  student: Student | string;
-  class: Class | string;
+  student: Student;
+  class: Class;
 }
 
 export interface Course {

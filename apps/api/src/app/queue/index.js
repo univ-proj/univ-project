@@ -31,16 +31,14 @@ import generate_id from '@/persistance/utils/id_generator';
  * @typedef {string} Topic Topic is structured like "POST user", "POST user/bookmarks" and so on.
  *
  * Publish a new event
- * @date 2021-04-07
  * @callback PublishEvent
- * @param {TracingContext} ctx
  * @param {Topic} topic
- * @param {import('@/persistence/graph').Author} author
+ * @param {} user
  * @returns {EventPublisher}
 
  * @type {PublishEvent}
  */
-function publish_event(topic, author, fake_async) {
+function publish_event(topic, user, fake_async) {
   // fake_async property is not document in JSDoc, because it is internal and not available for usage
   const id = generate_id();
 
@@ -48,7 +46,7 @@ function publish_event(topic, author, fake_async) {
     id,
     previous,
     current,
-    author,
+    user,
   });
 
   return {
