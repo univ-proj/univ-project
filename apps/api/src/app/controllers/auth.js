@@ -14,7 +14,7 @@ const auth_router = express.Router();
 /**
  * @typedef {object} LoginResponse
  * @property {string} token
- * @property {string} role - enum:student|staff
+ * @property {oneOf|Student|Staff} user
  *
  */
 

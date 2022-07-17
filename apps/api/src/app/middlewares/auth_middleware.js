@@ -22,12 +22,17 @@ export default async function auth_middleware(req, res, next) {
 
   const resolved_token = await system_auth.validate_token(token);
 
-  const user = await persistance.get_object({
-    model_name: resolved_token.role,
-    id: resolved_token.id,
-  });
+  let user;
+  try {
+    user = await persistance.get_object({
+      model_name: resolved_token.role,
+      id: resolved_token.id,
+    });
+  } catch (e) {
+    throw errors.invalid_token();
+  }
 
-  if (!resolved_token || !user) {
+  if (!resolved_token) {
     throw errors.invalid_token();
   }
 

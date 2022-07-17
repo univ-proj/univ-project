@@ -1,18 +1,61 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import './Tab1.css';
 import logo from '../../assets/Logo.svg';
 import Avatar from '@mui/material/Avatar';
+import moment from 'moment';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ScheduleCard } from '@univ-project/ui';
 
+import * as api from '@univ-project/client-sdk';
 import scheduleIcon from '../../assets/icon/ScheduleIcon.svg';
 import assignmentIcon from '../../assets/icon/AssignmentsIcon.svg';
 import gradesIcon from '../../assets/icon/GradesIcon.svg';
 import chatIcon from '../../assets/icon/ChatIcon.svg';
 import { Link } from 'react-router-dom';
+import { Class } from '@univ-project/typedefs';
+import { UserContext } from '../context/userContext';
 
 const Tab1: React.FC = () => {
+  const [nextClass, setNextClass] = useState<Class | null>(null);
+  const { user } = useContext(UserContext);
+
+  const getUpcomingClass = React.useCallback(async () => {
+    const {
+      results: [upcomingClass],
+    } = await api.listing<Class>(
+      'class',
+      {
+        filters: `date>${Date.now()},group:${user?.group}`,
+        sort: 'date',
+        page_size: '1',
+      },
+      { expand: 'lecturer' }
+    );
+
+    setNextClass(upcomingClass);
+  }, [user?.group]);
+
+  useEffect(() => {
+    // get upcoming class
+    getUpcomingClass();
+  }, [getUpcomingClass]);
+
+  function calculateDate(date?: Date) {
+    if (!date) {
+      return '';
+    }
+    const momentDate = moment(date);
+
+    const isToday = momentDate.startOf('d').diff(moment().startOf('d')) === 0;
+
+    if (isToday) {
+      return moment(date).format('LT');
+    }
+
+    return momentDate.format('DD/MM/YYYY');
+  }
+
   return (
     <div className="home-page">
       <div className="header">
@@ -29,7 +72,7 @@ const Tab1: React.FC = () => {
             src=""
           />
         </div>
-        <div className="text_bold">Welcome Noah</div>
+        <div className="text_bold">Welcome {user?.name?.split(' ')?.[0]}</div>
         <div className="text">We wish you a great day</div>
         {/* <LectureCard
           lecture_num={1}
@@ -44,10 +87,10 @@ const Tab1: React.FC = () => {
       <div className="bottom">
         <ScheduleCard
           status="coming next"
-          subject_name="Physics Section"
-          time="3:00 PM"
-          location="Room 3"
-          prof_name="Rasha Orban"
+          subject_name={nextClass?.name}
+          time={calculateDate(nextClass?.date)}
+          location={nextClass?.location}
+          prof_name={nextClass?.lecturer.name}
         />
         <div className="cards">
           <div className="card">

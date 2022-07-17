@@ -63,7 +63,7 @@ const class_schema = {
   },
   searchable_attributes: [],
   search: {
-    filters: [],
+    filters: ['date', 'group'],
   },
 };
 

@@ -33,7 +33,7 @@ export default function create_client(config, persistance) {
       }
 
       // generate token
-      return token.sign({ id: user.id, role });
+      return { token: token.sign({ id: user.id, role }), user, role };
     },
     // register: async () => {
 

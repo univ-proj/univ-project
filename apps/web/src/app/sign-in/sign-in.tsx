@@ -31,7 +31,7 @@ export function SignIn(props: SignInProps) {
 
   async function fetchData() {
     const data = await auth.login(values.email, values.password, 'student');
-    setToken(data);
+    setToken(data.token);
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
