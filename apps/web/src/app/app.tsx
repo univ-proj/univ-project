@@ -1,6 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+import styles from './app.module.css';
 
 import { useContext } from 'react';
+import AllSubjects from './pages/all-subjects/all-subjects';
 import AnswerAssignment from './answer-assignment/answer-assignment';
 import { UserContext } from './context/userContext';
 import CreateAssignments from './create-assignments/create-assignments';
