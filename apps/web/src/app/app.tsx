@@ -10,6 +10,8 @@ import PublicRoute from './public-route/public-route';
 import SignIn from './sign-in/sign-in';
 import SubjectSection from './subject-section/subject-section';
 import { Route, Redirect } from 'react-router-dom';
+import PrivateRoute from './private-route/private-route';
+import UserViews from './user-views/user-views';
 
 export function App() {
   return (
@@ -18,6 +20,11 @@ export function App() {
     // <SubjectSection />
     <div>
       <PublicRoute path="/" component={SignIn} exact />
+      <PrivateRoute path="/studentView" component={UserViews} />
+      <PrivateRoute path="/staffView" component={AllSubjects} />
+      <PrivateRoute path="/subjectSection" component={SubjectSection} />
+      <PrivateRoute path="/createAssignmet" component={CreateAssignments} />
+      <PrivateRoute path="/answerAssignment" component={AnswerAssignment} />
     </div>
 
     // <Route  componet={}/>

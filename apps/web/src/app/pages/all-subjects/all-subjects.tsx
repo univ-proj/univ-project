@@ -3,12 +3,15 @@ import { useEffect, useState } from 'react';
 import { getResource } from '@univ-project/client-sdk';
 import { Staff } from '@univ-project/typedefs';
 import { Box, Container, Grid, Typography } from '@mui/material';
+import { useHistory } from 'react-router-dom';
 /* eslint-disable-next-line */
 export interface AllSubjectsProps {}
 
 export function AllSubjects(props: AllSubjectsProps) {
   const grades = ['Grade1', 'Grade2', 'Grade3', 'Grade4'];
   const [subjects, setSubjects] = useState<string[]>([]);
+  const history = useHistory();
+
   useEffect(() => {
     const result = async () => {
       const resultData = await getResource<Staff>(
@@ -43,7 +46,13 @@ export function AllSubjects(props: AllSubjectsProps) {
         {subjects.map((title) => {
           return (
             <Grid key={title} item xs={3}>
-              <Button type="secondary" children={title}></Button>
+              <Button
+                type="secondary"
+                children={title}
+                onClick={() => {
+                  history.push('/subjectSection');
+                }}
+              ></Button>
             </Grid>
           );
         })}
