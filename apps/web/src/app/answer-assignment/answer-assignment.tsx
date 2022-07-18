@@ -256,6 +256,9 @@ export function AnswerAssignment(props: AnswerAssignmentProps) {
             <MenuItem value={'python'}>Python</MenuItem>
           </Select>
 
+          <Button size="medium" onClick={tryout}>
+            Tryout
+          </Button>
           <Button size="medium" onClick={submitAnswer}>
             Submit
           </Button>
@@ -273,6 +276,7 @@ export function AnswerAssignment(props: AnswerAssignmentProps) {
               borderRadius: '8px',
               color: '#6247AA',
               backgroundColor: '#ECE6F7',
+              height: '100%',
             }}
             // onChange={(val) => setMdValue(val)}
           />
