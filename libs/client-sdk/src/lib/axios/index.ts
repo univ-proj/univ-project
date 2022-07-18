@@ -2,7 +2,7 @@ import axios from 'axios';
 import host from '@jsdevtools/host-environment';
 
 const instance = axios.create({
-  baseURL: 'http://192.168.1.9:3006/api',
+  baseURL: 'http://localhost:3006/api',
 });
 
 instance.interceptors.response.use(
