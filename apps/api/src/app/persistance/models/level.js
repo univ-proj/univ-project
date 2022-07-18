@@ -30,7 +30,7 @@ const level = {
       type: 'object:group',
     },
   },
-  sortable_fields: [],
+  searchable_attributes: [],
   search: {
     filters: [],
   },

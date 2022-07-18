@@ -12,6 +12,7 @@ const relations_router = express.Router();
  * @tags Model
  * @description list all objects that has relation of relation name with the src modal with id :src_id
  * @summary list modal relation
+ * @security BearerAuth
  * @param {string} src_model.path.required - enum:answer,class,file,level,quiz,student,assignment,code_description,group,section,attendance,course,program,staff
  * @param {string} src_id.path.required - resource id
  * @param {string} relation_name.path.required - relation name
@@ -27,6 +28,7 @@ relations_router.get('/:src_model/:src_id/:relation_name', async (req, res) => {
     },
     {
       expand: req.query.expand,
+      user: req.user,
     }
   );
   res.json(result);
@@ -37,6 +39,7 @@ relations_router.get('/:src_model/:src_id/:relation_name', async (req, res) => {
  * @tags Model
  * @description create relation of specified :relation_name between :src_modal of :src_id and modal of :dst_id
  * @summary create relation
+ * @security BearerAuth
  * @param {string} src_model.path.required - enum:answer,class,file,level,quiz,student,assignment,code_description,group,section,attendance,course,program,staff
  * @param {string} src_id.path.required - resource id
  * @param {string} relation_name.path.required - relation name
@@ -55,7 +58,9 @@ relations_router.post(
         src_model,
         src_id,
       },
-      {}
+      {
+        user: req.user,
+      }
     );
 
     res.status(200).end();
@@ -67,6 +72,7 @@ relations_router.post(
  * @tags Model
  * @description delete relation of specified :relation_name between :src_modal of :src_id and modal of :dst_id
  * @summary delete relation
+ * @security BearerAuth
  * @param {string} src_model.path.required - enum:answer,class,file,level,quiz,student,assignment,code_description,group,section,attendance,course,program,staff
  * @param {string} src_id.path.required - resource id
  * @param {string} relation_name.path.required - relation name
@@ -85,7 +91,9 @@ relations_router.delete(
         src_model,
         src_id,
       },
-      {}
+      {
+        user: req.user,
+      }
     );
 
     res.status(200).end();

@@ -67,9 +67,9 @@ const student = {
       type: 'object:course',
     },
   },
-  sortable_fields: [],
+  searchable_attributes: ['name'],
   search: {
-    filters: [],
+    filters: ['email'],
   },
 };
 

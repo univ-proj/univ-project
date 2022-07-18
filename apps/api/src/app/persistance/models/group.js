@@ -34,7 +34,7 @@ const group = {
       type: 'object:section',
     },
   },
-  sortable_fields: [],
+  searchable_attributes: [],
   search: {
     filters: [],
   },

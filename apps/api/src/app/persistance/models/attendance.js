@@ -25,7 +25,7 @@ const attendance = {
     },
   },
   relations: {},
-  sortable_fields: [],
+  searchable_attributes: [],
   search: {
     filters: [],
   },

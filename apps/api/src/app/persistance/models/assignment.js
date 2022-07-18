@@ -20,8 +20,8 @@ const assignment = {
     name: {
       type: 'string',
     },
-    class: {
-      type: 'object:class',
+    course: {
+      type: 'object:course',
     },
     type: {
       type: 'string',
@@ -39,7 +39,7 @@ const assignment = {
       type: 'object:answer',
     },
   },
-  sortable_fields: [],
+  searchable_attributes: [],
   search: {
     filters: [],
   },

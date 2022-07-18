@@ -5,8 +5,8 @@ export interface Answer {
   type: AssignmentTypes;
   file: File;
   code: string;
-  // TODO:
-  // student: Student
+  student: Student;
+  assignment: Assignment;
 }
 export interface Class {
   name: string;
@@ -21,8 +21,6 @@ export interface Class {
 
   // relations
   attendance: Attendance[];
-  assignments: Assignment[];
-  quizzes: Quiz[];
   files: File[];
 }
 export interface File {
@@ -68,7 +66,7 @@ export interface Student {
 
 export interface Assignment {
   name: string;
-  class: Class;
+  course: Course;
   type: AssignmentTypes;
   file: File;
   code_description: CodeDescription;
@@ -79,9 +77,7 @@ export interface Assignment {
 
 export interface CodeDescription {
   description: string;
-  initial_tests: string;
   initial_code_snippet: string;
-  tests: string;
 }
 
 export interface Group {
@@ -106,14 +102,16 @@ export interface Section {
 
 export interface Attendance {
   attended: boolean;
-  student: Student | string;
-  class: Class | string;
+  student: Student;
+  class: Class;
 }
 
 export interface Course {
   name: string;
   optional: boolean;
   program: Program;
+  assignments: Assignment[];
+  quizzes: Quiz[];
 
   // relations
   classes: Class[];

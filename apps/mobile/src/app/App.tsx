@@ -15,7 +15,15 @@ import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 import SubjectPage from './pages/subjectPage/subjectPage';
-import { ScanIcon } from '@univ-project/ui';
+import {
+  HomeIcon,
+  NoticeIcon,
+  ProfileIcon,
+  ScanIcon,
+  SubjectsIcon,
+} from '@univ-project/ui';
+import Tab4 from './pages/Tab4';
+import SignInPage from './pages/sign-in/signIn';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -37,8 +45,9 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import LecturePage from './pages/lecturePage/lecturePage';
 import ScanTab from './pages/ScanTab';
-
-import Tab4 from './pages/Tab4';
+import SchedulePage from './pages/schedulePage/schedulePage';
+import PublicRoute from './components/public-route/public-route';
+import PrivateRoute from './components/private-route/private-route';
 
 const App: React.FC = () => {
   return (
@@ -46,42 +55,41 @@ const App: React.FC = () => {
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route path="/tab1" component={Tab1} exact={true} />
-            <Route path="/tab2" component={Tab2} exact={true} />
-            <Route path="/tab3" component={Tab3} />
-            <Route path="/tab4" component={Tab4} />
-            <Route path="/subjectPage" component={SubjectPage} />
-            <Route path="/lecturePage" component={LecturePage} />
-            <Route path="/tab4" component={ScanTab} />
-            <Route
-              path="/"
-              render={() => <Redirect to="/tab1" />}
-              exact={true}
-            />
+            <PublicRoute path="/signIn" component={SignInPage} exact />
+            <PrivateRoute path="/tab1" component={Tab1} />
+            <PrivateRoute path="/tab2" component={Tab2} />
+            <PrivateRoute path="/tab3" component={Tab3} />
+            <PrivateRoute path="/tab4" component={Tab4} />
+            <PrivateRoute path="/subjectPage" component={SubjectPage} />
+            <PrivateRoute path="/lecturePage" component={LecturePage} />
+            <PrivateRoute path="/scan" component={ScanTab} />
+            <PrivateRoute path="/schedulePage" component={SchedulePage} />
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
             <IonTabButton tab="Home" href="/tab1">
-              <IonIcon icon={triangle} />
+              {/* <IonIcon icon={triangle} /> */}
+              <HomeIcon type="outlined" />
               <IonLabel>Home</IonLabel>
             </IonTabButton>
             <IonTabButton tab="Subjects" href="/tab2">
-              <IonIcon icon={ellipse} />
+              {/* <IonIcon icon={ellipse} /> */}
+              <SubjectsIcon type="outlined" />
               <IonLabel>Subjects</IonLabel>
             </IonTabButton>
             <IonTabButton tab="Notice" href="/tab3">
-              <IonIcon icon={square} />
+              {/* <IonIcon icon={square} /> */}
+              <NoticeIcon type="outlined" />
               <IonLabel>Notice</IonLabel>
             </IonTabButton>
 
             <IonTabButton tab="Profile" href="/tab4">
-              <IonIcon icon={square} />
+              {/* <IonIcon icon={square} /> */}
+              <ProfileIcon type="outlined" />
               <IonLabel>Profile</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="tab4" href="/tab4">
-              {/* <IonIcon> */}
+            <IonTabButton tab="scan" href="/scan">
               <ScanIcon type="outlined" />
-              {/* </IonIcon> */}
-              <IonLabel>Tab 4</IonLabel>
+              <IonLabel>Scan</IonLabel>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>

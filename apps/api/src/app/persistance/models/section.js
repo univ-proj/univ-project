@@ -34,7 +34,7 @@ const section = {
       type: 'object:student',
     },
   },
-  sortable_fields: [],
+  searchable_attributes: [],
   search: {
     filters: [],
   },

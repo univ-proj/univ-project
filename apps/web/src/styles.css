@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+.w-md-editor-show-preview {
+  height: 100% !important;
+}
+
+.w-md-editor-content {
+  height: 100% !important;
+}

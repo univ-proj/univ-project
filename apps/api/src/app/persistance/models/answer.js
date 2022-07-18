@@ -24,9 +24,15 @@ const answer = {
     code: {
       type: 'string',
     },
+    student: {
+      type: 'object:student',
+    },
+    assignment: {
+      type: 'object:assignment',
+    },
   },
   relations: {},
-  sortable_fields: [],
+  searchable_attributes: [],
   search: {
     filters: [],
   },

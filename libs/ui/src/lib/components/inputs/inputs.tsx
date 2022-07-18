@@ -1,18 +1,23 @@
 import { IconButton, InputAdornment } from '@mui/material';
 import TextField from '@mui/material/TextField';
-import { SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import VisibilityOffIcon from '../../icons/visibility-off-icon/visibility-off-icon';
 import VisibilityOnIcon from '../../icons/visibility-on-icon/visibility-on-icon';
+import styles from './inputs.module.css';
+
 /* eslint-disable-next-line */
 export interface InputsProps {
-  focused: boolean;
-  color: 'error' | 'primary';
-  label: 'Email' | 'Password';
-  disabled: boolean;
-  error: boolean;
-  required: boolean;
-  helperText: string;
-  placeholder: string;
+  value: string;
+  onChange: any;
+  name: string;
+  focused?: boolean;
+  color?: 'error' | 'primary';
+  label?: string;
+  disabled?: boolean;
+  error?: boolean;
+  required?: boolean;
+  helperText?: string;
+  placeholder?: string;
   type: string;
 }
 
@@ -26,27 +31,32 @@ export function Inputs({
   required,
   label,
   type,
+  value,
+  onChange,
+  name,
 }: InputsProps) {
-  const [value, setValue] = useState('');
   const [showPassword, setshowPassword] = useState(false);
-
-  const handleChange = (e: { target: { value: SetStateAction<string> } }) => {
-    setValue(e.target.value);
-  };
 
   const handleClickShowPassword = () => {
     setshowPassword(!showPassword);
   };
 
-  const ShowIcon = type === 'password';
+  const showIcon = type === 'password';
+
+  if (type === 'password' && showPassword) {
+    type = 'text';
+  }
+
   return (
     <TextField
-      placeholder={placeholder}
-      type={showPassword ? 'text' : 'password'}
-      label={label}
+      name={name}
       value={value}
-      onChange={handleChange}
+      onChange={onChange}
+      placeholder={placeholder}
+      type={type}
+      label={label}
       focused={focused}
+      className={styles['input']}
       color={color}
       variant="outlined"
       error={error}
@@ -54,7 +64,7 @@ export function Inputs({
       disabled={disabled}
       required={required}
       InputProps={
-        ShowIcon
+        showIcon
           ? {
               endAdornment: (
                 <InputAdornment position="end">

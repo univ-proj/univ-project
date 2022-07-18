@@ -5,7 +5,7 @@ import { theme } from '../../theme';
 
 export default {
   component: Inputs,
-  title: 'Inputs',
+  title: 'Input',
 } as Meta;
 
 const Template: Story<InputsProps> = (args) => (

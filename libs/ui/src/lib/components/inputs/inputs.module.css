@@ -1,7 +1,19 @@
-/*
- * Replace this with your own classes
- *
- * e.g.
- * .container {
- * }
-*/
+.input {
+  width: 382px;
+  height: 48px;
+  padding-left: 16px;
+  padding-top: 14.5px;
+  padding-bottom: 14.5px;
+  color: #6247aa;
+  border-radius: 4px;
+  background-color: #ece6f7;
+  border: 1px solid #6247aa;
+}
+.input > div {
+  height: 100%;
+}
+
+.input:focus {
+  outline: none;
+  border: none;
+}
