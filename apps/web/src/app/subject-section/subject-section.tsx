@@ -80,7 +80,14 @@ export default function SubjectSection(props: SubjectSectionProps) {
           <Button variant="outlined">Notify Students</Button>
         </Grid>
         <Grid item>
-          <Button variant="outlined">Genrate QR</Button>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              history.push('/genrateQrCode');
+            }}
+          >
+            Genrate QR
+          </Button>
         </Grid>
         <Grid item>
           <Button
