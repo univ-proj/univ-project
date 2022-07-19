@@ -28,3 +28,82 @@
   width: 40px;
   font-weight: 100;
 }
+
+.create_assignment_page {
+  padding-top: 80px;
+  padding-left: 118.38px;
+  padding-bottom: 80px;
+  padding-right: 120px;
+  position: relative;
+}
+
+.logo_button_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.logo {
+  width: 140px;
+  height: 40px;
+}
+
+.input_container {
+  margin-top: 70px;
+}
+
+.input {
+  width: 382px;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #6247aa;
+  background-color: #ece6f7;
+  border: 1px solid #6247aa;
+  border-radius: 4px;
+}
+
+.boxes_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.description_preview_box {
+  display: inline-flex;
+}
+
+.description_box {
+  width: 114px;
+  height: 40px;
+  border: 1px solid #6247aa;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6247aa;
+  background-color: #ece6f7;
+  position: relative;
+  cursor: pointer;
+}
+
+.box_text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.preview_box {
+  width: 114px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #8372b4;
+  border: 1px solid #8372b4;
+  position: relative;
+  cursor: pointer;
+}
+.textarea_editor_conatiner {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}

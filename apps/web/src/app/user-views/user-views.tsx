@@ -4,12 +4,14 @@ import { listing } from '@univ-project/client-sdk';
 import { Class } from '@univ-project/typedefs';
 import { Button } from '@univ-project/ui';
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 /* eslint-disable-next-line */
 export interface UserViewsProps {}
 
 function UserViews(props: UserViewsProps) {
   const [classes, setClasses] = useState<any[]>([]);
+  const history = useHistory();
 
   useEffect(() => {
     const result = async () => {
@@ -61,7 +63,13 @@ function UserViews(props: UserViewsProps) {
           {classes.map((_class) => {
             return (
               <Box sx={{ mt: 2 }}>
-                <Button type="secondary" children={_class.name} />
+                <Button
+                  type="secondary"
+                  children={_class.name}
+                  onClick={() => {
+                    history.push('/answerAssignment');
+                  }}
+                />
               </Box>
             );
           })}

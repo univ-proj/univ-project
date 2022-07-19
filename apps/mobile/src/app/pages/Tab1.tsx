@@ -19,6 +19,7 @@ import { UserContext } from '../context/userContext';
 const Tab1: React.FC = () => {
   const [nextClass, setNextClass] = useState<Class | null>(null);
   const { user } = useContext(UserContext);
+  // TODO: add user group && user?.group
 
   const getUpcomingClass = React.useCallback(async () => {
     const {
@@ -26,7 +27,7 @@ const Tab1: React.FC = () => {
     } = await api.listing<Class>(
       'class',
       {
-        filters: `date>${Date.now()},group:${user?.group}`,
+        filters: `date>${Date.now()}`,
         sort: 'date',
         page_size: '1',
       },
@@ -34,7 +35,7 @@ const Tab1: React.FC = () => {
     );
 
     setNextClass(upcomingClass);
-  }, [user?.group]);
+  }, []);
 
   useEffect(() => {
     // get upcoming class

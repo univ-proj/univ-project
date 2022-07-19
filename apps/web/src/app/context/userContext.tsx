@@ -1,21 +1,28 @@
 import { WithId } from '@univ-project/client-sdk';
-import { Student } from '@univ-project/typedefs';
+import { Staff, Student } from '@univ-project/typedefs';
 import React, { useEffect, useState } from 'react';
 
 export const UserContext = React.createContext<{
   token?: string | null;
   setToken?: (token: string) => void;
-  user?: WithId<Student> | null;
-  setUser?: (user: WithId<Student> | null) => void;
+  user?: WithId<Student> | WithId<Staff> | null;
+  setUser?: (user: WithId<Student> | WithId<Staff> | null) => void;
   isLoggedIn?: boolean;
+  role?: 'student' | 'staff';
+  setRole?: React.Dispatch<
+    React.SetStateAction<'student' | 'staff' | undefined>
+  >;
 }>({});
 
 export const UserProvider: React.FC = ({ children }) => {
+  const [role, setRole] = useState<'student' | 'staff'>();
   const [token, setUserToken] = useState(() => {
     return localStorage.getItem('Token');
   });
 
-  const [user, setUserObject] = useState<WithId<Student> | null>(() => {
+  const [user, setUserObject] = useState<
+    WithId<Student> | WithId<Staff> | null
+  >(() => {
     const userStringified = localStorage.getItem('user');
     if (userStringified) {
       try {
@@ -30,7 +37,7 @@ export const UserProvider: React.FC = ({ children }) => {
 
   const isLoggedIn = !!user;
 
-  const setUser = (user: WithId<Student> | null) => {
+  const setUser = (user: WithId<Student> | WithId<Staff> | null) => {
     localStorage.setItem('user', JSON.stringify(user));
     setUserObject(user);
   };
@@ -42,7 +49,7 @@ export const UserProvider: React.FC = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ token, setToken, user, setUser, isLoggedIn }}
+      value={{ token, setToken, user, setUser, isLoggedIn, role, setRole }}
     >
       {children}
     </UserContext.Provider>

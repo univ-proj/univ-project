@@ -1,9 +1,12 @@
 import { BackIcon, LectureCard } from '@univ-project/ui';
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import logo from '../../../assets/Logo1.svg';
 import './subjectPage.css';
 import Avatar from '@mui/material/Avatar';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import * as api from '@univ-project/client-sdk';
+import { Class, Course } from '@univ-project/typedefs';
+import { WithId } from '@univ-project/client-sdk';
 
 const initialStyle = {
   lectureBox: {
@@ -20,6 +23,23 @@ const initialStyle = {
 
 const SubjectPage: React.FC = () => {
   const [style, setStyle] = useState(initialStyle);
+  const [selectedClassType, setSelectedClassType] = useState<
+    'lecture' | 'section'
+  >('lecture');
+  const [course, setCourse] = useState<WithId<Course> | null>(null);
+  const { subjectId } = useParams<any>();
+
+  const getCourseClasses = useCallback(async () => {
+    const course = await api.getResource<Course>('course', subjectId, {
+      expand: 'classes{files}',
+    });
+
+    setCourse(course);
+  }, [subjectId]);
+
+  useEffect(() => {
+    getCourseClasses();
+  }, [getCourseClasses]);
 
   const toggle = (style: string) => {
     switch (style) {
@@ -36,6 +56,7 @@ const SubjectPage: React.FC = () => {
             backgroundColor: 'white',
           },
         });
+        setSelectedClassType('lecture');
         break;
       case 'section_box':
         setStyle({
@@ -50,11 +71,28 @@ const SubjectPage: React.FC = () => {
             backgroundColor: '#ece6f7',
           },
         });
+        setSelectedClassType('section');
         break;
       default:
         break;
     }
   };
+
+  function getClassesWithType(classes?: Class[], type?: 'lecture' | 'section') {
+    return classes?.filter((cl) => cl?.type === type) as WithId<Class>[];
+  }
+
+  const calculateClassType = (
+    course?: WithId<Course> | null,
+    type?: 'section' | 'lecture'
+  ) => {
+    return course?.classes
+      ?.filter((val) => val?.type === type)
+      ?.length?.toString()
+      ?.padStart(2, '0');
+  };
+
+  const lecturerName = course?.classes?.[0]?.lecturer?.name;
 
   return (
     <div className="subject_page">
@@ -86,38 +124,36 @@ const SubjectPage: React.FC = () => {
             style={style.lectureBox}
             onClick={() => toggle('lecture_box')}
           >
-            04 Lectures
+            {calculateClassType(course, 'lecture')} Lectures
           </div>
           <div
             className="sections_box"
             style={style.sectionBox}
             onClick={() => toggle('section_box')}
           >
-            02 sections
+            {calculateClassType(course, 'section')} sections
           </div>
         </div>
       </div>
 
       <div className="lecture_cards_container">
-        <Link to="/lecturePage" style={{ textDecoration: 'none' }}>
-          <LectureCard
-            lecture_num={1}
-            files_num={1}
-            videos_num={1}
-            prof_name="Rasha Orban"
-            prof_img="sdsd"
-            update={true}
-          />
-        </Link>
-
-        <LectureCard
-          lecture_num={1}
-          files_num={1}
-          videos_num={1}
-          prof_name="Rasha Orban"
-          prof_img="sdsd"
-          update={true}
-        />
+        {getClassesWithType(course?.classes, selectedClassType)?.map(
+          (classVal, index) => (
+            <Link
+              to={`/lecturePage/${classVal.id}`}
+              style={{ textDecoration: 'none' }}
+            >
+              <LectureCard
+                lecture_num={index + 1}
+                name={classVal?.name}
+                files_num={classVal?.files?.length}
+                prof_name={lecturerName}
+                prof_img="sdsd"
+                update={true}
+              />
+            </Link>
+          )
+        )}
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 type AssignmentTypes = 'file' | 'code';
 type GenderTypes = 'male' | 'female';
+type ClassType = 'section' | 'lecture';
 
 export interface Answer {
   type: AssignmentTypes;
@@ -11,7 +12,7 @@ export interface Answer {
 export interface Class {
   name: string;
   date: Date;
-  type: 'section' | 'lecture';
+  type: ClassType;
   canceled: boolean;
   location: string;
   course: Course;
