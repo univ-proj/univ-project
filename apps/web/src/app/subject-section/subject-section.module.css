@@ -5,3 +5,48 @@
  * .container {
  * }
 */
+.subject_section_page {
+  padding-top: 80px;
+  padding-left: 118.38px;
+  padding-right: 120px;
+}
+
+.logo_buttons_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 140px;
+  height: 40px;
+}
+
+.buttons_container {
+  display: inline-flex;
+  gap: 16px;
+}
+
+.section_name {
+  margin-top: 40px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #333333;
+}
+
+.sub_text {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 8px;
+  color: #333333;
+}
+
+.buttons_container {
+  margin-top: 16px;
+  display: inline-flex;
+  gap: 16px;
+}
+
+.data_grid_container {
+  margin-top: 40px;
+}
