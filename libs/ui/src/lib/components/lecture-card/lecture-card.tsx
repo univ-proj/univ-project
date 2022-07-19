@@ -11,10 +11,11 @@ import logo2 from '../../../../../../apps/mobile/src/assets/icon/videos.svg';
 
 export interface LectureCardProps {
   lecture_num: number;
+  name?: string;
   files_num: number;
-  videos_num: number;
+  // videos_num: number;
   prof_img: string;
-  prof_name: string;
+  prof_name?: string;
   update: boolean;
 }
 
@@ -42,13 +43,13 @@ export function LectureCard(props: LectureCardProps) {
             {/* <PdfIcon /> */}
             <div className={styles['text']}>{props.files_num} Files</div>
           </div>
-          <div className={styles['container']} style={{ marginTop: '9px' }}>
+          {/* <div className={styles['container']} style={{ marginTop: '9px' }}>
             <div className={styles['icon_container']}>
               <VideoIcon />
             </div>
 
             <div className={styles['text']}>{props.videos_num} videos</div>
-          </div>
+          </div> */}
         </div>
       </div>
 

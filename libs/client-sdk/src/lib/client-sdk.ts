@@ -5,7 +5,7 @@ type ExcludeMatchingProperties<T, V> = Pick<
   { [K in keyof T]-?: T[K] extends V ? never : K }[keyof T]
 >;
 
-type WithId<T> = T & { id: string };
+export type WithId<T> = T & { id: string };
 export type IModelsKeys =
   | 'answer'
   | 'class'

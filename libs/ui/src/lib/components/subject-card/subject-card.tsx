@@ -1,5 +1,6 @@
 import styles from './subject-card.module.css';
 import Avatar from '@mui/material/Avatar';
+
 /* eslint-disable-next-line */
 // className={styles['container']}
 
@@ -32,7 +33,7 @@ export function SubjectCard(props: SubjectCardProps) {
 
       <div className={styles['prof_info_container']}>
         <Avatar
-          alt="prof_img"
+          alt={props.prof_name}
           sx={{ width: '32px', height: '32px' }}
           src={props.prof_picture}
         />

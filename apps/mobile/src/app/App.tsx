@@ -60,8 +60,14 @@ const App: React.FC = () => {
             <PrivateRoute path="/tab2" component={Tab2} />
             <PrivateRoute path="/tab3" component={Tab3} />
             <PrivateRoute path="/tab4" component={Tab4} />
-            <PrivateRoute path="/subjectPage" component={SubjectPage} />
-            <PrivateRoute path="/lecturePage" component={LecturePage} />
+            <PrivateRoute
+              path="/subjectPage/:subjectId"
+              component={SubjectPage}
+            />
+            <PrivateRoute
+              path="/lecturePage/:lectureId"
+              component={LecturePage}
+            />
             <PrivateRoute path="/scan" component={ScanTab} />
             <PrivateRoute path="/schedulePage" component={SchedulePage} />
           </IonRouterOutlet>

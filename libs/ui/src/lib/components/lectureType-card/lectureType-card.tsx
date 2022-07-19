@@ -4,7 +4,7 @@ import styles from './lectureType-card.module.css';
 
 export interface LectureTypeCardProps {
   type?: 'file' | 'video';
-  lecture_num: number;
+  name?: string;
 }
 
 export const LectureTypeCard = (props: LectureTypeCardProps) => {
@@ -19,9 +19,9 @@ export const LectureTypeCard = (props: LectureTypeCardProps) => {
       </div>
 
       <div className={styles['lecture_type']}>
-        Lecture {props.lecture_num}.{props.type === 'file' ? 'pdf' : 'mp4'}
+        {props.name}.{props.type === 'file' ? 'pdf' : 'mp4'}
       </div>
-      <div className={styles['lecture_type-topic']}>Topic of the lecture</div>
+      <div className={styles['lecture_type-topic']}>{props.name}</div>
 
       <div className={styles['button_container']}>
         <Button size="medium" icon="file_download">

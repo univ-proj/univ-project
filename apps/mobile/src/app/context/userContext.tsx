@@ -1,11 +1,12 @@
-import { Staff, Student } from '@univ-project/typedefs';
+import { WithId } from '@univ-project/client-sdk';
+import { Student } from '@univ-project/typedefs';
 import React, { useEffect, useState } from 'react';
 
 export const UserContext = React.createContext<{
   token?: string | null;
   setToken?: (token: string) => void;
-  user?: Student | null;
-  setUser?: (user: Student | null) => void;
+  user?: WithId<Student> | null;
+  setUser?: (user: WithId<Student> | null) => void;
   isLoggedIn?: boolean;
 }>({});
 
@@ -14,7 +15,7 @@ export const UserProvider: React.FC = ({ children }) => {
     return localStorage.getItem('Token');
   });
 
-  const [user, setUserObject] = useState<Student | null>(() => {
+  const [user, setUserObject] = useState<WithId<Student> | null>(() => {
     const userStringified = localStorage.getItem('user');
     if (userStringified) {
       try {
@@ -29,7 +30,7 @@ export const UserProvider: React.FC = ({ children }) => {
 
   const isLoggedIn = !!user;
 
-  const setUser = (user: Student | null) => {
+  const setUser = (user: WithId<Student> | null) => {
     localStorage.setItem('user', JSON.stringify(user));
     setUserObject(user);
   };
