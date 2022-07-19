@@ -60,9 +60,9 @@ const Tab1: React.FC = () => {
   return (
     <div className="home-page">
       <div className="header">
-        <div className="chatIcon_container">
+        {/* <div className="chatIcon_container">
           <img alt="fff" src={chatIcon} />
-        </div>
+        </div> */}
         <div className="logo-container">
           <img alt="fff" src={logo} />
         </div>
@@ -93,7 +93,18 @@ const Tab1: React.FC = () => {
           location={nextClass?.location}
           prof_name={nextClass?.lecturer.name}
         />
-        <div className="cards">
+
+        <div className="schedule_card">
+          <div className="card">
+            <Link style={{ textDecoration: 'none' }} to="/schedulePage">
+              <div className="card_content">
+                <img alt="fff" src={scheduleIcon} />
+                <div className="card_text">Schedule</div>
+              </div>
+            </Link>
+          </div>
+        </div>
+        {/* <div className="cards">
           <div className="card">
             <Link style={{ textDecoration: 'none' }} to="/schedulePage">
               <div className="card_content">
@@ -120,7 +131,7 @@ const Tab1: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

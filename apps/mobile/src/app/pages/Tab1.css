@@ -57,7 +57,7 @@
 }
 
 .card {
-  width: 187px;
+  width: 382px;
   height: 308px;
   background-color: #ece6f7;
   position: relative;
@@ -88,4 +88,8 @@
   height: 150px;
   background-color: #ece6f7;
   position: relative;
+}
+
+.schedule_card {
+  margin-top: 8px;
 }

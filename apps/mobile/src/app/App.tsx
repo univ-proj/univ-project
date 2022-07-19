@@ -82,20 +82,16 @@ const App: React.FC = () => {
               <SubjectsIcon type="outlined" />
               <IonLabel>Subjects</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="Notice" href="/tab3">
-              {/* <IonIcon icon={square} /> */}
-              <NoticeIcon type="outlined" />
-              <IonLabel>Notice</IonLabel>
+
+            <IonTabButton tab="scan" href="/scan">
+              <ScanIcon type="outlined" />
+              <IonLabel>Scan</IonLabel>
             </IonTabButton>
 
             <IonTabButton tab="Profile" href="/tab4">
               {/* <IonIcon icon={square} /> */}
               <ProfileIcon type="outlined" />
               <IonLabel>Profile</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="scan" href="/scan">
-              <ScanIcon type="outlined" />
-              <IonLabel>Scan</IonLabel>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
