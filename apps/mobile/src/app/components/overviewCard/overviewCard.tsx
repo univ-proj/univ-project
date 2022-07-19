@@ -2,7 +2,7 @@ import React from 'react';
 import './overviewCard.css';
 
 interface OverViewCardProps {
-  number: number;
+  number?: number;
   text: string;
 }
 
