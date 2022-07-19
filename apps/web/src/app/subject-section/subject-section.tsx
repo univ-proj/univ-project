@@ -10,6 +10,7 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { getResource } from '@univ-project/client-sdk';
 import { Section } from '@univ-project/typedefs';
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 /* eslint-disable-next-line */
 
 const columns: GridColDef[] = [
@@ -46,6 +47,7 @@ export interface SubjectSectionProps {}
 
 export default function SubjectSection(props: SubjectSectionProps) {
   const [students, setStudents] = useState<any[]>([]);
+  const history = useHistory();
 
   useEffect(() => {
     const result = async () => {
@@ -78,10 +80,23 @@ export default function SubjectSection(props: SubjectSectionProps) {
           <Button variant="outlined">Notify Students</Button>
         </Grid>
         <Grid item>
-          <Button variant="outlined">Genrate QR</Button>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              history.push('/genrateQrCode');
+            }}
+          >
+            Genrate QR
+          </Button>
         </Grid>
         <Grid item>
-          <Button color="primary" variant="contained">
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() => {
+              history.push('/createAssignmet');
+            }}
+          >
             Upload Assiginment
           </Button>
         </Grid>

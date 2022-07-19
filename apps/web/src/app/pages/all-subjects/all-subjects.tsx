@@ -3,12 +3,18 @@ import { useEffect, useState } from 'react';
 import { getResource } from '@univ-project/client-sdk';
 import { Staff } from '@univ-project/typedefs';
 import { Box, Container, Grid, Typography } from '@mui/material';
+import { useHistory } from 'react-router-dom';
+import styles from './all-subjects.module.css';
+import logo from '../../../assets/Logo1.svg';
+import { AllSubjectButton } from '../../components/allSubjectsButton/button';
 /* eslint-disable-next-line */
 export interface AllSubjectsProps {}
 
 export function AllSubjects(props: AllSubjectsProps) {
   const grades = ['Grade1', 'Grade2', 'Grade3', 'Grade4'];
   const [subjects, setSubjects] = useState<string[]>([]);
+  const history = useHistory();
+
   useEffect(() => {
     const result = async () => {
       const resultData = await getResource<Staff>(
@@ -24,36 +30,78 @@ export function AllSubjects(props: AllSubjectsProps) {
     result();
   }, []);
 
-  function GradesRow() {
-    return (
-      <>
-        {grades.map((grade) => {
-          return (
-            <Grid key={grade} item xs={3}>
-              <Button type="primary" children={grade}></Button>
-            </Grid>
-          );
-        })}
-      </>
-    );
-  }
-  function SubjectsRow() {
-    return (
-      <>
-        {subjects.map((title) => {
-          return (
-            <Grid key={title} item xs={3}>
-              <Button type="secondary" children={title}></Button>
-            </Grid>
-          );
-        })}
-      </>
-    );
-  }
+  // function GradesRow() {
+  //   return (
+  //     <>
+  //       {grades.map((grade) => {
+  //         return (
+  //           <Grid key={grade} item xs={3}>
+  //             <Button type="primary" children={grade}></Button>
+  //           </Grid>
+  //         );
+  //       })}
+  //     </>
+  //   );
+  // }
+  // function SubjectsRow() {
+  //   return (
+  //     <>
+  //       {subjects.map((title) => {
+  //         return (
+  //           <Grid key={title} item xs={3}>
+  //             <Button
+  //               type="secondary"
+  //               children={title}
+  //               onClick={() => {
+  //                 history.push('/subjectSection');
+  //               }}
+  //             ></Button>
+  //           </Grid>
+  //         );
+  //       })}
+  //     </>
+  //   );
+  // }
 
   return (
-    <>
-      <Container
+    <div className={styles['allSubject_page']}>
+      <div className={styles['logo_button_container']}>
+        <img alt="FFF" className={styles['logo']} src={logo} />
+        <Button size="medium" type="secondary">
+          Sign Out
+        </Button>
+      </div>
+
+      <div className={styles['content']}>
+        <div className={styles['allSubjects']}>All Subjects</div>
+        <div className={styles['sub_text']}>
+          Here are all the subjects taught by you to students
+        </div>
+
+        <div className={styles['buttons_container']}>
+          <div className={styles['grades_container']}>
+            {grades.map((grade) => (
+              <AllSubjectButton>{grade}</AllSubjectButton>
+            ))}
+          </div>
+
+          <div className={styles['sections_container']}>
+            {subjects.map((title) => (
+              <AllSubjectButton
+                type="secondary"
+                onClick={() => {
+                  history.push('/subjectSection');
+                }}
+              >
+                title
+              </AllSubjectButton>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+    // <>
+    /* <Container
         disableGutters
         maxWidth="xs"
         component="main"
@@ -88,7 +136,7 @@ export function AllSubjects(props: AllSubjectsProps) {
           </Grid>
         </Grid>
       </Box>
-    </>
+    </> */
   );
 }
 

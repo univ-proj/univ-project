@@ -17,7 +17,6 @@ export * from './lib/icons/subjects-icon/subjects-icon';
 export * from './lib/icons/home-icon/home-icon';
 export * from './lib/icons/basic-icon/basic-icon';
 export * from './lib/components/lecture-card/lecture-card';
-export * from './lib/components/buttons/button/button';
 export * from './lib/ui';
 export * from './lib/theme';
 export * from './lib/components/subject-card/subject-card';
@@ -26,5 +25,6 @@ export * from './lib/components/lectureType-card/lectureType-card';
 export * from './lib/components/notification/notification';
 export * from './lib/components/attendence-card/attendence-card';
 export * from './lib/components/inputs/inputs';
+export * from './lib/components/buttons/button/button';
 // example
 // example 2

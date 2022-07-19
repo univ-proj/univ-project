@@ -1,0 +1,45 @@
+.qrCode_page {
+  margin-top: 80px;
+  margin-left: 118.38px;
+  margin-right: 120px;
+}
+
+.logo_students_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 140px;
+  height: 40px;
+}
+
+.students_container {
+  display: grid;
+  row-gap: 0;
+}
+
+.student_container {
+  display: inline-flex;
+  gap: 16px;
+}
+
+.student_name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 10.5px;
+}
+
+.qrCode_container {
+  margin-top: 169.5px;
+  margin-left: 450px;
+}
+
+.qrCode_text {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333333;
+  margin-top: 66px;
+  margin-left: 300px;
+}

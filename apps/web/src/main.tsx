@@ -5,12 +5,15 @@ import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '@univ-project/ui';
 
 import App from './app/app';
+import { UserProvider } from './app/context/userContext';
 
 ReactDOM.render(
   <StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <App />
+        <UserProvider>
+          <App />
+        </UserProvider>
       </ThemeProvider>
     </BrowserRouter>
   </StrictMode>,
